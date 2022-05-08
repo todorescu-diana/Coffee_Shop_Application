@@ -7,11 +7,11 @@
 <?import javafx.scene.text.Text?>
 
 
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopListController">
+<ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopMenuClientController">
     <content>
         <AnchorPane prefHeight="400.0" prefWidth="600.0">
             <children>
-                <Text layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coffee Shop List" />
+                <Text layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coffee Shop Menu" />
                 <VBox fx:id="verticalBoxContainer" layoutX="14.0" layoutY="65.0">
                     <children>
                     </children>

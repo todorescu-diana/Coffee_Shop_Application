@@ -1,11 +1,14 @@
 package org.loose.fis.sre.services;
 
+import javafx.scene.control.ChoiceBox;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.NitriteId;
 import org.dizitart.no2.exceptions.InvalidIdException;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.loose.fis.sre.controllers.CoffeeShopMenuController;
 import org.loose.fis.sre.exceptions.MenuItemAlreadyExistsException;
 import org.loose.fis.sre.model.CoffeeShopMenuItem;
+import org.loose.fis.sre.model.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -15,51 +18,62 @@ import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
 public class CoffeeShopMenuItemService {
 
-    private static ObjectRepository<CoffeeShopMenuItem> menuItemsRepository;
-
-    public static void initDatabase() {
-        Nitrite database = Nitrite.builder()
-                .filePath(getPathToFile("menuItems.db").toFile())
-                .openOrCreate("test", "test");
-
-        menuItemsRepository = database.getRepository(CoffeeShopMenuItem.class);
-    }
-
-    public static ObjectRepository<CoffeeShopMenuItem> getMenuItemsRepository() {
-        return menuItemsRepository;
-    }
-
     public static void addMenuItem(String name, String description, String drinkVolume) throws InvalidIdException, MenuItemAlreadyExistsException {
         checkMenuItemDoesNotAlreadyExist(name);
-        menuItemsRepository.insert(new CoffeeShopMenuItem(name,description, drinkVolume));
+        CoffeeShopMenuItem[] newMenuItems = new CoffeeShopMenuItem[CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() + 1];
+        int count = 0;
+
+        for(CoffeeShopMenuItem item : CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItems()) {
+                newMenuItems[count++] = item;
+        }
+
+        newMenuItems[count] = new CoffeeShopMenuItem(name, description, drinkVolume);
+
+        CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItemsNumber( CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() + 1);
+
+        CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItems(newMenuItems, CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber());
     }
 
     public static void removeMenuItem(String name, String description, String drinkVolume) {
-        menuItemsRepository.remove(new CoffeeShopMenuItem(name,description, drinkVolume));
+        CoffeeShopMenuItem[] newMenuItems = new CoffeeShopMenuItem[CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() - 1];
+        int count = 0;
+
+        for(CoffeeShopMenuItem item : CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItems()) {
+            if(!Objects.equals(item.getName(), name)) {
+                newMenuItems[count++] = item;
+            }
+        }
+
+        CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItemsNumber( CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() - 1);
+
+        CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItems(newMenuItems, CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber());
     }
 
     public static void modifyMenuItem(String oldName, String name, String description, String drinkVolume) throws MenuItemAlreadyExistsException {
-        if(!oldName.equals(name)) {
-            removeMenuItem(oldName, description, drinkVolume);
-            addMenuItem(name, description, drinkVolume);
-        }
-        else {
-            CoffeeShopMenuItem itemToBeModified = null;
-            for (CoffeeShopMenuItem item : menuItemsRepository.find()) {
-                if (Objects.equals(name, item.getName()))
-                    itemToBeModified = item;
+        CoffeeShopMenuItem[] newMenuItems = new CoffeeShopMenuItem[CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() - 1];
+        int count = 0;
+
+        for(CoffeeShopMenuItem item : CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItems()) {
+            if(!Objects.equals(item.getName(), name)) {
+                newMenuItems[count++] = item;
             }
-            itemToBeModified.setName(name);
-            itemToBeModified.setDescription(description);
-            itemToBeModified.setDrinkVolume(drinkVolume);
-            menuItemsRepository.update(itemToBeModified);   
+            else {
+                item.setName(name);
+                item.setDescription(description);
+                item.setDrinkVolume(drinkVolume);
+                newMenuItems[count++] = item;
+            }
         }
+
+        CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItems(newMenuItems, CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber());
     }
 
     private static void checkMenuItemDoesNotAlreadyExist(String name) throws MenuItemAlreadyExistsException {
-        for (CoffeeShopMenuItem item : menuItemsRepository.find()) {
-            if (Objects.equals(name, item.getName()))
-                throw new MenuItemAlreadyExistsException(name);
+        for (CoffeeShopMenuItem item : CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItems()) {
+            if(item != null) {
+                if (Objects.equals(name, item.getName()))
+                    throw new MenuItemAlreadyExistsException(name);
+            }
         }
     }
 

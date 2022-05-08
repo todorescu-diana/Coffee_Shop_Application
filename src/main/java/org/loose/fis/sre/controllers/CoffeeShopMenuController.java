@@ -10,10 +10,16 @@ import javafx.scene.text.Text;
 import org.dizitart.no2.exceptions.InvalidIdException;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.MenuItemAlreadyExistsException;
+import org.loose.fis.sre.model.CoffeeShop;
 import org.loose.fis.sre.model.CoffeeShopMenuItem;
+import org.loose.fis.sre.model.User;
 import org.loose.fis.sre.services.CoffeeShopMenuItemService;
 
-import static org.loose.fis.sre.services.CoffeeShopMenuItemService.getMenuItemsRepository;
+import java.util.Objects;
+
+import static org.loose.fis.sre.controllers.LoginController.getCurrentUser;
+import static org.loose.fis.sre.services.CoffeeShopService.getCoffeeShopsRepository;
+import static org.loose.fis.sre.services.UserService.getUserRepository;
 
 public class CoffeeShopMenuController {
     @FXML
@@ -26,14 +32,25 @@ public class CoffeeShopMenuController {
     @FXML private TextField descriptionField;
     @FXML private TextField drinkVolumeField;
 
+    private static CoffeeShop currentCoffeeShop;
 
     public void initialize () {
-        ObjectRepository<CoffeeShopMenuItem> menuItemsRepository = getMenuItemsRepository();
+        ObjectRepository<CoffeeShop> coffeeShopsRepository = getCoffeeShopsRepository();
 
-        for(CoffeeShopMenuItem item : menuItemsRepository.find()) {
-            createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume());
+        for(CoffeeShop shop : coffeeShopsRepository.find()) {
+            if(Objects.equals(shop.getOwner(), getCurrentUser())) {
+                currentCoffeeShop = shop;
+            }
         }
+
+        System.out.println(currentCoffeeShop.getMenuItems());
+
+//        for(CoffeeShopMenuItem item : currentCoffeeShop.getMenuItems()) {
+//            createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume());
+//        }
     }
+
+    public static CoffeeShop getCurrentCoffeeShop() {return currentCoffeeShop;}
 
     public void createNewItemContainer(String name, String description, String drinkVolume) {
         HBox newHBox = new HBox();
@@ -180,8 +197,7 @@ public class CoffeeShopMenuController {
     }
 
     @FXML
-    private void handleAddItemAction(javafx.event.ActionEvent event) throws MenuItemAlreadyExistsException {
+    private void handleAddItemAction(javafx.event.ActionEvent event) {
         createNewEditableItemContainer();
     }
-
 }

@@ -11,7 +11,7 @@
    <content>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Button layoutX="484.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleButtonAction" text="Add Item" />
+            <Button layoutX="484.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleAddItemAction" text="Add Item" />
             <Text layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" />
             <VBox fx:id="verticalBoxContainer" layoutX="14.0" layoutY="65.0">
                <children>

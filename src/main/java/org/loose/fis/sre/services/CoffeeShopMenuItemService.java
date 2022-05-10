@@ -23,15 +23,19 @@ public class CoffeeShopMenuItemService {
         CoffeeShopMenuItem[] newMenuItems = new CoffeeShopMenuItem[CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() + 1];
         int count = 0;
 
-        for(CoffeeShopMenuItem item : CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItems()) {
+        if(CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() > 0) {
+            for(CoffeeShopMenuItem item : CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItems()) {
                 newMenuItems[count++] = item;
+            }
         }
 
         newMenuItems[count] = new CoffeeShopMenuItem(name, description, drinkVolume);
 
-        CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItemsNumber( CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() + 1);
+        CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItemsNumber( CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() + 1 );
 
         CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItems(newMenuItems, CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber());
+
+        CoffeeShopService.modifyCoffeeShop(CoffeeShopMenuController.getCurrentCoffeeShop());
     }
 
     public static void removeMenuItem(String name, String description, String drinkVolume) {
@@ -47,25 +51,32 @@ public class CoffeeShopMenuItemService {
         CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItemsNumber( CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() - 1);
 
         CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItems(newMenuItems, CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber());
+
+        CoffeeShopService.modifyCoffeeShop(CoffeeShopMenuController.getCurrentCoffeeShop());
     }
 
     public static void modifyMenuItem(String oldName, String name, String description, String drinkVolume) throws MenuItemAlreadyExistsException {
-        CoffeeShopMenuItem[] newMenuItems = new CoffeeShopMenuItem[CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() - 1];
-        int count = 0;
-
-        for(CoffeeShopMenuItem item : CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItems()) {
-            if(!Objects.equals(item.getName(), name)) {
-                newMenuItems[count++] = item;
-            }
-            else {
-                item.setName(name);
-                item.setDescription(description);
-                item.setDrinkVolume(drinkVolume);
-                newMenuItems[count++] = item;
-            }
+        if(!oldName.equals(name)) {
+            removeMenuItem(oldName, description, drinkVolume);
+            addMenuItem(name, description, drinkVolume);
         }
+        else {
+            CoffeeShopMenuItem[] newMenuItems = new CoffeeShopMenuItem[CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber()];
+            int count = 0;
 
-        CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItems(newMenuItems, CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber());
+            for(CoffeeShopMenuItem item : CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItems()) {
+                if(Objects.equals(item.getName(), name)) {
+                    item.setName(name);
+                    item.setDescription(description);
+                    item.setDrinkVolume(drinkVolume);
+                }
+                newMenuItems[count++] = item;
+            }
+
+            CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItems(newMenuItems, CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber());
+
+            CoffeeShopService.modifyCoffeeShop(CoffeeShopMenuController.getCurrentCoffeeShop());
+        }
     }
 
     private static void checkMenuItemDoesNotAlreadyExist(String name) throws MenuItemAlreadyExistsException {

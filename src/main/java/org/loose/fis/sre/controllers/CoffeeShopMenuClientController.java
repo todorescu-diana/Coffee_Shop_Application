@@ -28,7 +28,7 @@ public class CoffeeShopMenuClientController {
 
 
     public void initialize () {
-        String selectedCoffeeShop = CoffeeShopListController.getSelectedCoffeeShopname();
+        String selectedCoffeeShop = CoffeeShopListController.getSelectedCoffeeShopName();
         CoffeeShop currentCoffeeShop;
         ObjectRepository<CoffeeShop> coffeeShopsRepository = getCoffeeShopsRepository();
 

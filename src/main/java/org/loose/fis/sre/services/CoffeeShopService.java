@@ -35,6 +35,10 @@ public class CoffeeShopService {
         checkCoffeeShopDoesNotAlreadyExist(name);
         coffeeShopsRepository.insert(new CoffeeShop(name, owner));
     }
+
+    public static void modifyCoffeeShop(CoffeeShop shop) {
+        coffeeShopsRepository.update(shop);
+    }
     private static void checkCoffeeShopDoesNotAlreadyExist(String name) throws CoffeeShopAlreadyExistsException {
         for (CoffeeShop shop : coffeeShopsRepository.find()) {
             if (Objects.equals(name, shop.getName()))

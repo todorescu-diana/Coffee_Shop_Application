@@ -24,7 +24,6 @@ import static org.loose.fis.sre.services.CoffeeShopService.getCoffeeShopsReposit
 public class CoffeeShopListController {
     @FXML
     private VBox verticalBoxContainer;
-
     static String selectedCoffeeShopName;
 
     public void initialize () {
@@ -78,7 +77,7 @@ public class CoffeeShopListController {
         verticalBoxContainer.getChildren().add(newHBox);
     }
 
-    public static String getSelectedCoffeeShopname() {
+    public static String getSelectedCoffeeShopName() {
         return selectedCoffeeShopName;
     }
 }

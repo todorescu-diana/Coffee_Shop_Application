@@ -12,25 +12,16 @@ import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.MenuItemAlreadyExistsException;
 import org.loose.fis.sre.model.CoffeeShop;
 import org.loose.fis.sre.model.CoffeeShopMenuItem;
-import org.loose.fis.sre.model.User;
 import org.loose.fis.sre.services.CoffeeShopMenuItemService;
 
 import java.util.Objects;
 
 import static org.loose.fis.sre.controllers.LoginController.getCurrentUser;
 import static org.loose.fis.sre.services.CoffeeShopService.getCoffeeShopsRepository;
-import static org.loose.fis.sre.services.UserService.getUserRepository;
 
 public class CoffeeShopMenuController {
     @FXML
     private VBox verticalBoxContainer;
-
-    @FXML
-    private Text itemMessage;
-
-    @FXML private TextField nameField;
-    @FXML private TextField descriptionField;
-    @FXML private TextField drinkVolumeField;
 
     private static CoffeeShop currentCoffeeShop;
 
@@ -38,16 +29,15 @@ public class CoffeeShopMenuController {
         ObjectRepository<CoffeeShop> coffeeShopsRepository = getCoffeeShopsRepository();
 
         for(CoffeeShop shop : coffeeShopsRepository.find()) {
-            if(Objects.equals(shop.getOwner(), getCurrentUser())) {
-                currentCoffeeShop = shop;
+            if(Objects.equals(shop.getOwner(), (String)getCurrentUser())) {
+               currentCoffeeShop = shop;
             }
         }
-
-        System.out.println(currentCoffeeShop.getMenuItems());
-
-//        for(CoffeeShopMenuItem item : currentCoffeeShop.getMenuItems()) {
-//            createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume());
-//        }
+        if(currentCoffeeShop.getMenuItemsNumber() > 0) {
+            for(CoffeeShopMenuItem item : currentCoffeeShop.getMenuItems()) {
+                createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume());
+            }
+        }
     }
 
     public static CoffeeShop getCurrentCoffeeShop() {return currentCoffeeShop;}

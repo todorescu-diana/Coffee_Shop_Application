@@ -6,7 +6,7 @@ public class CoffeeShop {
     @Id
     private String name;
     private String owner;
-    private CoffeeShopMenuItem []menuItems;
+    private CoffeeShopMenuItem[] menuItems;
     private int menuItemsNumber = 0;
 
     public CoffeeShop(String name, String owner) {
@@ -31,12 +31,15 @@ public class CoffeeShop {
 
     public void setMenuItems(CoffeeShopMenuItem[] arr, int arrLength) {
         menuItems = new CoffeeShopMenuItem[arrLength];
-        this.menuItems = arr;
+        int count = 0;
+        for(CoffeeShopMenuItem item : arr) {
+            if(count < 100) menuItems[count++] = item;
+        }
     }
 
     public String getOwner() {return owner;}
 
-    public void setOwner(String owner) { this.owner = owner;}
+    public void setOwner(String owner) {this.owner = owner;}
 
     public int getMenuItemsNumber() {return this.menuItemsNumber;}
     public void setMenuItemsNumber(int number) {this.menuItemsNumber = number;}

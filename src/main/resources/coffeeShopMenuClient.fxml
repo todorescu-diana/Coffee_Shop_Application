@@ -3,9 +3,9 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-
 
 <ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopMenuClientController">
     <content>
@@ -16,6 +16,10 @@
                     <children>
                     </children>
                 </VBox>
+            <HBox fx:id="hContainer" layoutX="414.0" layoutY="31.0" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="goToCheckoutButton" onAction="#onCheckoutPress" mnemonicParsing="false" text="Go to Checkout" />
+               </children></HBox>
             </children>
         </AnchorPane>
     </content>

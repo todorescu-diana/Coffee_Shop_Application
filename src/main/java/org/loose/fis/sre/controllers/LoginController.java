@@ -28,13 +28,13 @@ public class LoginController {
     @FXML
     private TextField usernameField;
 
-    private static String currentUser;
+    private static User currentUser;
 
     @FXML
     public void initialize() {
 
     }
-    public static String getCurrentUser() {
+    public static User getCurrentUser() {
         return currentUser;
     }
 
@@ -46,11 +46,15 @@ public class LoginController {
             Stage currentStage = (Stage) usernameField.getScene().getWindow();
             String username = usernameField.getText();
 
-            currentUser = username;
+            ObjectRepository<User> userRepository = getUserRepository();
+
+            for(User user : userRepository.find()) {
+                if(Objects.equals(username, user.getUsername())) {
+                    currentUser = user;
+                }
+            }
 
             currentStage.close();
-
-            ObjectRepository<User> userRepository = getUserRepository();
 
             String role = "";
 

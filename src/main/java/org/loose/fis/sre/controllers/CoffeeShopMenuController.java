@@ -29,7 +29,7 @@ public class CoffeeShopMenuController {
         ObjectRepository<CoffeeShop> coffeeShopsRepository = getCoffeeShopsRepository();
 
         for(CoffeeShop shop : coffeeShopsRepository.find()) {
-            if(Objects.equals(shop.getOwner(), (String)getCurrentUser())) {
+            if(Objects.equals(shop.getOwner(), (String)getCurrentUser().getUsername())) {
                currentCoffeeShop = shop;
             }
         }

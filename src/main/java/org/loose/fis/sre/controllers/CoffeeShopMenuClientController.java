@@ -26,10 +26,11 @@ public class CoffeeShopMenuClientController {
     @FXML private TextField descriptionField;
     @FXML private TextField drinkVolumeField;
 
+    private static CoffeeShop currentCoffeeShop;
+
 
     public void initialize () {
         String selectedCoffeeShop = CoffeeShopListController.getSelectedCoffeeShopName();
-        CoffeeShop currentCoffeeShop;
         ObjectRepository<CoffeeShop> coffeeShopsRepository = getCoffeeShopsRepository();
 
         for(CoffeeShop shop : coffeeShopsRepository.find()) {
@@ -38,9 +39,11 @@ public class CoffeeShopMenuClientController {
             }
         }
 
-       // for(CoffeeShopMenuItem item : menuItemsRepository.find()) {
-         //   createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume());
-       // }
+        if(currentCoffeeShop.getMenuItemsNumber() > 0) {
+            for (CoffeeShopMenuItem item : currentCoffeeShop.getMenuItems()) {
+                createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume());
+            }
+        }
     }
 
     public void createNewItemContainer(String name, String description, String drinkVolume) {

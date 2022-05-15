@@ -35,7 +35,7 @@ public class CoffeeShopMenuClientController {
 
     private static CoffeeShop currentCoffeeShop;
 
-    private Order currentOrder;
+    private static Order currentOrder;
 
     @FXML
     private Button goToCheckoutButton;
@@ -53,7 +53,7 @@ public class CoffeeShopMenuClientController {
 
         if(currentCoffeeShop.getMenuItemsNumber() > 0) {
             for (CoffeeShopMenuItem item : currentCoffeeShop.getMenuItems()) {
-                createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume(), item);
+                createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume(), item.getPrice(), item);
             }
         }
 
@@ -61,22 +61,18 @@ public class CoffeeShopMenuClientController {
     }
 
     @FXML
-    private void onCheckoutPress (javafx.event.ActionEvent event) {
+    private void onCheckoutPress (javafx.event.ActionEvent event) throws IOException {
         Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();
         currentStage.close();
-        Parent checkout = null;
-        try {
-            checkout = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("checkout.fxml")));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        Parent checkout = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("checkout.fxml")));
+
         Scene newScene = new Scene(checkout);
         Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         newStage.setScene(newScene);
         newStage.show();
     }
 
-    public void createNewItemContainer(String name, String description, String drinkVolume, CoffeeShopMenuItem item) {
+    public void createNewItemContainer(String name, String description, String drinkVolume, int price, CoffeeShopMenuItem item) {
         HBox newHBox = new HBox();
         AnchorPane newPanelContent = new AnchorPane();
 
@@ -86,12 +82,13 @@ public class CoffeeShopMenuClientController {
         Text nameField = new Text(name);
         Text descriptionField = new Text(description);
         Text drinkVolumeField = new Text(drinkVolume);
+        Text priceField = new Text(String.valueOf(price));
 
         CoffeeShopMenuItem currentItem = item;
 
-        newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"));
+        newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), new Text("Price:"));
         newVBoxInfo.setLayoutX(104.0);
-        newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField);
+        newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
         newPanelContent.getChildren().addAll(newVBoxTitles, newVBoxInfo);
         TitledPane newTitledPane = new TitledPane(name, newPanelContent);
@@ -111,5 +108,13 @@ public class CoffeeShopMenuClientController {
         newHBox.getChildren().addAll(newTitledPane, newDecrementButton, newIncrementButton);
 
         verticalBoxContainer.getChildren().add(newHBox);
+    }
+
+    public static Order getCurrentOrder() {
+        return currentOrder;
+    }
+
+    public static CoffeeShop getCurrentCoffeeShop() {
+        return currentCoffeeShop;
     }
 }

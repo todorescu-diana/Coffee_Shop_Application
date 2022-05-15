@@ -9,12 +9,13 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CheckoutController">
    <children>
-      <Text layoutX="269.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checkout" />
-      <Text layoutX="144.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pay with:" />
-      <ChoiceBox fx:id="payWith" layoutX="225.0" layoutY="97.0" prefWidth="150.0" />
+      <Text layoutX="269.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checkout" />
+      <Text layoutX="152.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pay with:" />
+      <ChoiceBox fx:id="payWith" layoutX="231.0" layoutY="96.0" prefHeight="31.0" prefWidth="187.0" />
       <HBox fx:id="hBox" layoutX="140.0" layoutY="150.0" prefHeight="43.0" prefWidth="278.0" />
-      <Text layoutX="140.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" />
-      <TextField layoutX="225.0" layoutY="219.0" />
-      <Button fx:id="placeOrderButton" layoutX="252.0" layoutY="304.0" mnemonicParsing="false" text="Place Order" />
+      <Text layoutX="153.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" />
+      <TextField layoutX="231.0" layoutY="219.0" />
+      <Button fx:id="placeOrderButton" layoutX="252.0" layoutY="305.0" mnemonicParsing="false" onAction="#handlePlaceOrderPress" text="Place Order" />
+      <Text fx:id="insufficientFundsMessage" layoutX="412.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" />
    </children>
 </AnchorPane>

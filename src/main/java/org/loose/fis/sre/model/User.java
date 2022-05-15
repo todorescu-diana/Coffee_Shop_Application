@@ -17,6 +17,13 @@ public class User {
         this.role = role;
     }
 
+    public User(String username, String password, String role, Order[] orderList) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.orderList = orderList;
+    }
+
     public User() {
     }
 
@@ -58,11 +65,11 @@ public class User {
         orderNumber = arrLength;
     }
 
-    public void addOrderToOrderList(Order order, User targetUser) {
-        Order[] newOrders = new Order[targetUser.getOrderNumber() + 1];
+    public void addOrderToOrderList(Order order) {
+        Order[] newOrders = new Order[this.getOrderNumber() + 1];
         int count = 0;
 
-        if (targetUser.getOrderNumber() > 0) {
+        if (this.getOrderNumber() > 0) {
             for (Order orderItem : this.orderList) {
                 newOrders[count++] = orderItem;
             }

@@ -7,9 +7,18 @@ public class Order {
     private int itemNumber = 0;
     private String orderDate;
 
+    private int price;
+
     public Order(CoffeeShopMenuItem[] items, String orderDate) {
         this.items = items;
         this.orderDate = orderDate;
+
+        int p = 0;
+        for(CoffeeShopMenuItem item : items) {
+            p += item.getPrice();
+        }
+
+        this.price = p;
     }
 
     public Order() {
@@ -23,7 +32,7 @@ public class Order {
         items = new CoffeeShopMenuItem[arrLength];
         int count = 0;
         for(CoffeeShopMenuItem item : newItems) {
-            {items[count++] = item;System.out.println("item: "+ item);}
+            items[count++] = item;
         }
 
         itemNumber = arrLength;
@@ -77,5 +86,22 @@ public class Order {
 
     public void setOrderDate(String orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public int getOrderPrice() { return price; }
+
+    public void setOrderPrice(int price) {
+        this.price = price;
+    }
+
+    public void calculateOrderPrice() {
+        int p = 0;
+        if(this.getItemNumber() > 0) {
+            for(CoffeeShopMenuItem item : this.getItems()) {
+                p += item.getPrice();
+            }
+        }
+
+        this.setOrderPrice(p);
     }
 }

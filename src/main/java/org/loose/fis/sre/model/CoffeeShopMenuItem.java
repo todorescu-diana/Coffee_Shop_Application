@@ -8,10 +8,13 @@ public class CoffeeShopMenuItem {
     private String description;
     private String drinkVolume;
 
-    public CoffeeShopMenuItem(String name, String description, String drinkVolume) {
+    private int price;
+
+    public CoffeeShopMenuItem(String name, String description, String drinkVolume, int price) {
         this.name = name;
         this.description = description;
         this.drinkVolume = drinkVolume;
+        this.price = price;
     }
 
     public CoffeeShopMenuItem() {
@@ -39,6 +42,12 @@ public class CoffeeShopMenuItem {
 
     public void setDrinkVolume(String drinkVolume) {
         this.drinkVolume = drinkVolume;
+    }
+
+    public int getPrice() { return price; }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override

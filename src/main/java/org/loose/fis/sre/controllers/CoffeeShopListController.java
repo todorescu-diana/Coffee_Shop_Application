@@ -14,12 +14,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.model.CoffeeShop;
+import org.loose.fis.sre.model.User;
 
 import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static org.loose.fis.sre.services.CoffeeShopService.getCoffeeShopsRepository;
+import static org.loose.fis.sre.services.UserService.getUserRepository;
 
 public class CoffeeShopListController {
     @FXML
@@ -79,5 +81,27 @@ public class CoffeeShopListController {
 
     public static String getSelectedCoffeeShopName() {
         return selectedCoffeeShopName;
+    }
+
+    public void handleGoToCoffeeShopListPress(javafx.event.ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();
+        currentStage.close();
+
+        Parent coffeeShopList = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coffeeShopList.fxml")));
+        Scene newScene = new Scene(coffeeShopList);
+        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        newStage.setScene(newScene);
+        newStage.show();
+    }
+
+    public void handleGoToPastOrdersPress(javafx.event.ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();
+
+        Parent coffeeShopList = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("orderListClient.fxml")));
+        Scene newScene = new Scene(coffeeShopList);
+        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        newStage.setScene(newScene);
+        currentStage.close();
+        newStage.show();
     }
 }

@@ -19,7 +19,7 @@ public class OrderPlacedScreenController {
         Stage currentStage = (Stage) homeButton.getScene().getWindow();
         currentStage.close();
 
-        Parent coffeeShopMenuClient = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coffeeShopMenuClient.fxml")));
+        Parent coffeeShopMenuClient = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coffeeShopList.fxml")));
         Scene newScene = new Scene(coffeeShopMenuClient);
         Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         newStage.setScene(newScene);

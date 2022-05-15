@@ -7,11 +7,14 @@ public class Order {
     private int itemNumber = 0;
     private String orderDate;
 
+    private String coffeeShopName;
+
     private int price;
 
-    public Order(CoffeeShopMenuItem[] items, String orderDate) {
+    public Order(CoffeeShopMenuItem[] items, String orderDate, String coffeeShopName) {
         this.items = items;
         this.orderDate = orderDate;
+        this.coffeeShopName = coffeeShopName;
 
         int p = 0;
         for(CoffeeShopMenuItem item : items) {
@@ -92,6 +95,14 @@ public class Order {
 
     public void setOrderPrice(int price) {
         this.price = price;
+    }
+
+    public String getCoffeeShopName() {
+        return coffeeShopName;
+    }
+
+    public void setCoffeeShopName(String coffeeShopName) {
+        this.coffeeShopName = coffeeShopName;
     }
 
     public void calculateOrderPrice() {

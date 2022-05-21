@@ -10,13 +10,14 @@ import org.loose.fis.sre.services.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        initDirectory();
+        //initDirectory();
         UserService.initDatabase();
         CoffeeShopService.initDatabase();
         CardService.initDatabase();

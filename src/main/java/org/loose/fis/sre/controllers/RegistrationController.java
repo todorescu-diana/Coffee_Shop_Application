@@ -16,6 +16,7 @@ import org.dizitart.no2.exceptions.InvalidIdException;
 import org.loose.fis.sre.exceptions.CoffeeShopAlreadyExistsException;
 import org.loose.fis.sre.exceptions.MenuItemAlreadyExistsException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
+import org.loose.fis.sre.model.User;
 import org.loose.fis.sre.services.CoffeeShopMenuItemService;
 import org.loose.fis.sre.services.CoffeeShopService;
 import org.loose.fis.sre.services.UserService;
@@ -47,6 +48,7 @@ public class RegistrationController {
                 HBox HBoxContainer = new HBox();
                 Text itemMessage = new Text("Coffee Shop Name:");
                 TextField coffeeShopNameField = new TextField();
+                coffeeShopNameField.setId("coffeeShopNameField");
                 coffeeShopNameField.textProperty().addListener((observable, oldValue, newValue) -> {
                     coffeeShopRegistrationName = newValue;
                 });
@@ -62,8 +64,11 @@ public class RegistrationController {
             UserService.addUser(usernameField.getText(), passwordField.getText(), (String) role.getValue());
             if(Objects.equals(role.getValue(), "Coffee Shop Manager")) CoffeeShopService.addCoffeeShop(coffeeShopRegistrationName, usernameField.getText());
             registrationMessage.setText("Account created successfully!");
-        } catch (UsernameAlreadyExistsException | CoffeeShopAlreadyExistsException e) {
+        } catch (UsernameAlreadyExistsException e) {
             registrationMessage.setText(e.getMessage());
+        } catch(CoffeeShopAlreadyExistsException e) {
+            registrationMessage.setText(e.getMessage());
+            UserService.removeUser(usernameField.getText());
         }
     }
 

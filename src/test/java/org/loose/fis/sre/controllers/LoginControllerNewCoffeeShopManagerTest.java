@@ -21,10 +21,12 @@ import java.util.Objects;
 import static org.testfx.assertions.api.Assertions.assertThat;
 
 @ExtendWith(ApplicationExtension.class)
-public class LoginNewClientControllerTest {
-    public static final String USERNAMETHATDOESNTEXISTYET = "clientThatDoesntExistYet";
+public class LoginControllerNewCoffeeShopManagerTest {
+    public static final String USERNAMETHATDOESNTEXISTYET = "managerThatDoesntExistYet";
     public static final String PASSWORD = "password";
-    public static final String ROLECLIENT = "Client";
+    public static final String ROLEMANAGER = "Coffee Shop Manager";
+
+    public static final String COFFEESHOPNAME = "coffee shop that doesnt exist yet";
 
     @BeforeEach
     void setUp() throws Exception {
@@ -43,7 +45,7 @@ public class LoginNewClientControllerTest {
     }
 
     @Test
-    void testNewClientLogin(FxRobot robot) {
+    void testNewCoffeeShopManagerLogin(FxRobot robot) {
         robot.clickOn("#usernameField");
         robot.write(USERNAMETHATDOESNTEXISTYET);
         robot.clickOn("#passwordField");
@@ -59,8 +61,11 @@ public class LoginNewClientControllerTest {
         robot.write(USERNAMETHATDOESNTEXISTYET);
         robot.clickOn("#passwordField");
         robot.write(PASSWORD);
-        robot.clickOn("#role").clickOn(ROLECLIENT);
+        robot.clickOn("#role").clickOn(ROLEMANAGER);
+        robot.clickOn("#coffeeShopNameField");
+        robot.write(COFFEESHOPNAME);
         robot.clickOn("#registerButton");
+
         assertThat(robot.lookup("#registrationMessage").queryText()).hasText("Account created successfully!");
 
         robot.clickOn("#goToLogin");
@@ -73,6 +78,6 @@ public class LoginNewClientControllerTest {
 
         robot.clickOn("#loginButton");
 
-        assertThat(robot.lookup("#coffeeShopListClientText").queryText()).hasText("Coffee Shop List");
+        assertThat(robot.lookup("#coffeeShopMenuManagerText").queryText()).hasText("Menu");
     }
 }

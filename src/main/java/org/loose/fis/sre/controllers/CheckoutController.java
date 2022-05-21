@@ -64,13 +64,18 @@ public class CheckoutController {
         CoffeeShopMenuClientController.getCurrentOrder().calculateOrderPrice();
         CoffeeShopMenuClientController.getCurrentOrder().setOrderDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
 
+        CoffeeShopMenuClientController.getCurrentOrder().setCoffeeShopName(getCurrentCoffeeShop().getName());
+
         getCurrentUser().addOrderToOrderList(CoffeeShopMenuClientController.getCurrentOrder());
 
-        for(User user : getUserRepository().find()) {
+        for (User user : getUserRepository().find()) {
             if (Objects.equals(getCurrentCoffeeShop().getOwner(), user.getUsername())) currentManager = user;
         }
 
         currentManager.addOrderToOrderList(CoffeeShopMenuClientController.getCurrentOrder());
+
+        modifyUser(getCurrentUser());
+        modifyUser(currentManager);
 
 //        for(Order o : getCurrentUser().getOrderList()) {
 //            for(CoffeeShopMenuItem item : o.getItems()) {
@@ -78,42 +83,54 @@ public class CheckoutController {
 //            }
 //        }
 
+        //System.out.println(CoffeeShopMenuClientController.getCurrentOrder().getCoffeeShopName());
+
         int found = 0;
-        if(Objects.equals(payWith.getValue(), "Card")) {
+        if (Objects.equals(payWith.getValue(), "Card")) {
             ObjectRepository<Card> cardRepository = getCardRepository();
 
-            for(Card card : cardRepository.find()) {
-                if(Objects.equals(card.getCardNumber(), cardNumber)) {
+            for (Card card : cardRepository.find()) {
+                if (Objects.equals(card.getCardNumber(), cardNumber)) {
                     currentCard = card;
                     found = 1;
                 }
             }
-            if(found == 0) {
+            if (found == 0) {
                 insufficientFundsMessage.setText("Card not found.");
             }
-        }
+
 
 //        System.out.println("CARD NUMBER: " + currentCard.getCardNumber());
 //        System.out.println("CARD BALANCE: " + currentCard.getBalance());
-        if(found == 1) {
-            int oldBalance = currentCard.getBalance();
-            if(oldBalance < CoffeeShopMenuClientController.getCurrentOrder().getOrderPrice()) {
-                insufficientFundsMessage.setText("Insufficient funds on card.");
+            else {
+                int oldBalance = currentCard.getBalance();
+                if (oldBalance < CoffeeShopMenuClientController.getCurrentOrder().getOrderPrice()) {
+                    insufficientFundsMessage.setText("Insufficient funds on card.");
 //            System.out.println("OLD BALANCE: " + currentCard.getBalance());
 //            System.out.println("ORDER PRICE: " + CoffeeShopMenuClientController.getCurrentOrder().getOrderPrice());
-            }
-            else {
-                currentCard.setBalance(oldBalance - CoffeeShopMenuClientController.getCurrentOrder().getOrderPrice());
+                } else {
+                    currentCard.setBalance(oldBalance - CoffeeShopMenuClientController.getCurrentOrder().getOrderPrice());
 //                System.out.println("NEW BALANCE: " + currentCard.getBalance());
-                Stage currentStage = (Stage) placeOrderButton.getScene().getWindow();
-                currentStage.close();
+                    Stage currentStage = (Stage) placeOrderButton.getScene().getWindow();
+                    currentStage.close();
 
-                Parent orderPlacedScreen = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("orderPlacedScreen.fxml")));
-                Scene newScene = new Scene(orderPlacedScreen);
-                Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                newStage.setScene(newScene);
-                newStage.show();
+                    Parent orderPlacedScreen = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("orderPlacedScreen.fxml")));
+                    Scene newScene = new Scene(orderPlacedScreen);
+                    Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    newStage.setScene(newScene);
+                    newStage.show();
+                }
             }
+        }
+        else {
+            Stage currentStage = (Stage) placeOrderButton.getScene().getWindow();
+            currentStage.close();
+
+            Parent orderPlacedScreen = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("orderPlacedScreen.fxml")));
+            Scene newScene = new Scene(orderPlacedScreen);
+            Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            newStage.setScene(newScene);
+            newStage.show();
         }
     }
 }

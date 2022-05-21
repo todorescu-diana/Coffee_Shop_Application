@@ -11,12 +11,14 @@
    <content>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Button layoutX="484.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleAddItemAction" text="Add Item" />
-            <Text id="coffeeShopMenuManagerText" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" />
-            <VBox fx:id="verticalBoxContainer" layoutX="14.0" layoutY="65.0">
+            <Button id="addItemButton" layoutX="484.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleAddItemAction" text="Add Item" />
+            <Text id="coffeeShopMenuManagerText" layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" />
+            <VBox id="verticalBoxContainer" fx:id="verticalBoxContainer" layoutX="14.0" layoutY="65.0">
                <children>
-         </children>
+               </children>
             </VBox>
+            <Button onAction="#handleGoToCoffeeShopMenu" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" text="My Coffee Shop's Menu" />
+            <Button onAction="#handleGoToTodaysOrders" layoutX="268.0" layoutY="11.0" mnemonicParsing="false" text="Today's Orders" />
          </children>
       </AnchorPane>
    </content>

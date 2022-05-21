@@ -72,7 +72,7 @@ public class CoffeeShopMenuClientController {
         newStage.show();
     }
 
-    public void createNewItemContainer(String name, String description, String drinkVolume, int price, CoffeeShopMenuItem item) {
+    public void createNewItemContainer(String name, String description, String drinkVolume, float price, CoffeeShopMenuItem item) {
         HBox newHBox = new HBox();
         AnchorPane newPanelContent = new AnchorPane();
 

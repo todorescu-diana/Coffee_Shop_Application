@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopMenuClientController">
+<ScrollPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopMenuClientController">
     <content>
         <AnchorPane prefHeight="400.0" prefWidth="600.0">
             <children>

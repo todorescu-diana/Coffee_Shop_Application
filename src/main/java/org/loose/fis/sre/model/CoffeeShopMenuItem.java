@@ -8,9 +8,9 @@ public class CoffeeShopMenuItem {
     private String description;
     private String drinkVolume;
 
-    private int price;
+    private float price;
 
-    public CoffeeShopMenuItem(String name, String description, String drinkVolume, int price) {
+    public CoffeeShopMenuItem(String name, String description, String drinkVolume, float price) {
         this.name = name;
         this.description = description;
         this.drinkVolume = drinkVolume;
@@ -44,7 +44,7 @@ public class CoffeeShopMenuItem {
         this.drinkVolume = drinkVolume;
     }
 
-    public int getPrice() { return price; }
+    public float getPrice() { return price; }
 
     public void setPrice(int price) {
         this.price = price;

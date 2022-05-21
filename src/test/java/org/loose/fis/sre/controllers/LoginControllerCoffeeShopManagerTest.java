@@ -22,7 +22,7 @@ import java.util.Objects;
 import static org.testfx.assertions.api.Assertions.assertThat;
 
 @ExtendWith(ApplicationExtension.class)
-public class LoginCoffeeShopManagerTest {
+public class LoginControllerCoffeeShopManagerTest {
     public static final String USERNAMETHATALREADYEXISTS = "managerThatAlreadyExists";
     public static final String PASSWORD = "password";
     public static final String WRONGPASSWORD = "wrongpassword";

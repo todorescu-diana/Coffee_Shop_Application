@@ -62,7 +62,7 @@ public class User {
             orderList[count++] = order;
         }
 
-        orderNumber = arrLength;
+        orderNumber++;
     }
 
     public void addOrderToOrderList(Order order) {

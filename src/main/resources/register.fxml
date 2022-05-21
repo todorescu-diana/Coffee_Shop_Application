@@ -38,6 +38,6 @@
     <Text fx:id="registrationMessage" id="registrationMessage" layoutX="395.0" layoutY="316.0" text="" wrappingWidth="125.00000476837158" GridPane.columnIndex="1" GridPane.rowIndex="7" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5" />
     <Button id="registerButton" layoutX="273.0" layoutY="295.0" onAction="#handleRegisterAction" text="Register" />
-    <Button layoutX="225.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleGoToLoginAction" text="Go back to Login Page" />
+    <Button id="goToLogin" layoutX="225.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleGoToLoginAction" text="Go back to Login Page" />
     <Text layoutX="250.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create an account" />
 </AnchorPane>

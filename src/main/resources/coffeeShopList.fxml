@@ -11,7 +11,7 @@
     <content>
         <AnchorPane prefHeight="400.0" prefWidth="600.0">
             <children>
-                <Text layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coffee Shop List" />
+                <Text id="coffeeShopListClientText" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coffee Shop List" />
                 <VBox fx:id="verticalBoxContainer" layoutX="14.0" layoutY="65.0">
                     <children>
                     </children>

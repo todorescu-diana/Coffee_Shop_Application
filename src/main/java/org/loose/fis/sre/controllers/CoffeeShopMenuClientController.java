@@ -12,18 +12,15 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.dizitart.no2.exceptions.InvalidIdException;
 import org.dizitart.no2.objects.ObjectRepository;
-import org.loose.fis.sre.exceptions.MenuItemAlreadyExistsException;
 import org.loose.fis.sre.model.CoffeeShop;
 import org.loose.fis.sre.model.CoffeeShopMenuItem;
 import org.loose.fis.sre.model.Order;
-import org.loose.fis.sre.services.CoffeeShopMenuItemService;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.loose.fis.sre.controllers.LoginController.getCurrentUser;
 import static org.loose.fis.sre.services.CoffeeShopService.getCoffeeShopsRepository;
 
 public class CoffeeShopMenuClientController {
@@ -105,21 +102,29 @@ public class CoffeeShopMenuClientController {
         newTitledPane.expandedProperty().addListener((observable, wasExpanded, isExpanded) ->
                 newTitledPane.setMinHeight(isExpanded ? 200 : Region.USE_PREF_SIZE));
 
+        AtomicInteger itemQuantity = new AtomicInteger();
+
+        Text itemQuantityText = new Text(String.valueOf(itemQuantity.get()));
         Button newDecrementButton = new Button("-");
         String decrementButtonId = "decrementButton" + String.valueOf(itemIndex);
         newDecrementButton.setId(decrementButtonId);
         newDecrementButton.setOnAction((event) -> {
-            if(currentOrder.getItemNumber() == 1) newHBox.getChildren().remove(newDecrementButton);
-            if(currentOrder.getItemNumber() > 0) currentOrder.removeItem(item, currentOrder);
+            if(currentOrder.getItemNumber() > 0 && Integer.parseInt(itemQuantityText.getText()) > 0) {
+                currentOrder.removeItem(item, currentOrder);
+                itemQuantity.getAndDecrement();
+                itemQuantityText.setText(String.valueOf(itemQuantity.get()));
+
+            }
         });
         Button newIncrementButton = new Button("+");
         String incrementButtonId = "incrementButton" + String.valueOf(itemIndex);
         newIncrementButton.setId(incrementButtonId);
         newIncrementButton.setOnAction((event) -> {
             currentOrder.addItem(item, currentOrder);
-            if(currentOrder.getItemNumber() == 1 ) newHBox.getChildren().add(newDecrementButton);
+            itemQuantity.getAndIncrement();
+            itemQuantityText.setText(String.valueOf(itemQuantity.get()));
         });
-        newHBox.getChildren().addAll(newTitledPane, newIncrementButton);
+        newHBox.getChildren().addAll(newTitledPane, newIncrementButton, newDecrementButton, itemQuantityText);
 
         verticalBoxContainer.getChildren().add(newHBox);
     }

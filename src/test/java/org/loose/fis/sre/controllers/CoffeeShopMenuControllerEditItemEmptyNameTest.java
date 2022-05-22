@@ -34,8 +34,7 @@ public class CoffeeShopMenuControllerEditItemEmptyNameTest {
     public static final String DESCRIPTION = "description";
     public static final String DRINKVOLUME = "250";
     public static final String STRINGPRICE = "100";
-    public static final int INTPRICE = 100;
-
+    public static final float FLOATPRICE = 100;
     @BeforeEach
     void setUp() throws Exception {
         FileSystemService.APPLICATION_FOLDER = ".test-registration-example";
@@ -52,7 +51,7 @@ public class CoffeeShopMenuControllerEditItemEmptyNameTest {
             break;
         }
         CoffeeShopMenuItem[] menuItems = new CoffeeShopMenuItem[1];
-        menuItems[0] = new CoffeeShopMenuItem(NONEMPTYCOFFEENAME,DESCRIPTION,DRINKVOLUME,INTPRICE);
+        menuItems[0] = new CoffeeShopMenuItem(NONEMPTYCOFFEENAME,DESCRIPTION,DRINKVOLUME,FLOATPRICE);
         currentCoffeeShop.setMenuItems(menuItems, 1);
         currentCoffeeShop.setMenuItemsNumber(1);
 
@@ -68,7 +67,7 @@ public class CoffeeShopMenuControllerEditItemEmptyNameTest {
     }
 
     @Test
-    void testCoffeeShopMenuAddItemEmptyName(FxRobot robot) {
+    void testCoffeeShopMenuEditItemEmptyName(FxRobot robot) {
         Assertions.assertThat(UserService.getAllUsers()).size().isEqualTo(1);
         Assertions.assertThat(CoffeeShopService.getAllCoffeeShops()).size().isEqualTo(1);
 

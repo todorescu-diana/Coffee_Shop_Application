@@ -18,7 +18,7 @@
                 </VBox>
             <HBox fx:id="hContainer" layoutX="414.0" layoutY="31.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="goToCheckoutButton" onAction="#onCheckoutPress" mnemonicParsing="false" text="Go to Checkout" />
+                  <Button fx:id="goToCheckoutButton" id="goToCheckoutButton" onAction="#onCheckoutPress" mnemonicParsing="false" text="Go to Checkout" />
                </children></HBox>
             </children>
         </AnchorPane>

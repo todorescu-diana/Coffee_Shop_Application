@@ -31,12 +31,14 @@ public class CoffeeShopListController {
     public void initialize () {
         ObjectRepository<CoffeeShop> coffeeShopsRepository = getCoffeeShopsRepository();
 
+        int shopIndex = 0;
         for(CoffeeShop shop: coffeeShopsRepository.find()) {
-            createNewShopContainer(shop.getName());
+            createNewShopContainer(shop.getName(), shopIndex);
+            shopIndex++;
         }
     }
 
-    public void createNewShopContainer(String name) {
+    public void createNewShopContainer(String name, int shopIndex) {
         HBox newHBox = new HBox();
         AnchorPane newPanelContent = new AnchorPane();
 
@@ -44,6 +46,8 @@ public class CoffeeShopListController {
         VBox newVBoxInfo = new VBox();
 
         Text nameField = new Text(name);
+        String nameFieldId = "shopNameField" + String.valueOf(shopIndex);
+        nameField.setId(nameFieldId);
 
         newVBoxTitles.getChildren().add(new Text("Name:"));
         newVBoxInfo.setLayoutX(104.0);
@@ -57,6 +61,8 @@ public class CoffeeShopListController {
                 newTitledPane.setMinHeight(isExpanded ? 200 : Region.USE_PREF_SIZE));
 
         Button goToMenuButton = new Button("Go to coffee shop's menu");
+        String goToMenuButtonId = "goToMenuButtonId" + String.valueOf(shopIndex);
+        goToMenuButton.setId(goToMenuButtonId);
 
         goToMenuButton.setOnAction((event) -> {
             Stage currentStage = (Stage) goToMenuButton.getScene().getWindow();

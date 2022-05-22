@@ -34,9 +34,11 @@ public class CoffeeShopMenuControllerEditItem0PriceTest {
     public static final String DRINKVOLUME = "250";
 
     public static final String POSITIVEZEROPRICE = "0";
+    public static final String POSITIVEDOUBLEZEROPRICE = "0.0";
     public static final String NEGATIVEZEROPRICE = "-0";
+    public static final String NEGATIVEDOUBLEZEROPRICE = "-0.0";
     public static final String POSITIVEPRICE = "40";
-    public static final int INTPRICE = 100;
+    public static final float FLOATPRICE = 100;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -54,7 +56,7 @@ public class CoffeeShopMenuControllerEditItem0PriceTest {
             break;
         }
         CoffeeShopMenuItem[] menuItems = new CoffeeShopMenuItem[1];
-        menuItems[0] = new CoffeeShopMenuItem(NONEMPTYCOFFEENAME,DESCRIPTION,DRINKVOLUME,INTPRICE);
+        menuItems[0] = new CoffeeShopMenuItem(NONEMPTYCOFFEENAME,DESCRIPTION,DRINKVOLUME, FLOATPRICE);
         currentCoffeeShop.setMenuItems(menuItems, 1);
         currentCoffeeShop.setMenuItemsNumber(1);
 
@@ -70,7 +72,7 @@ public class CoffeeShopMenuControllerEditItem0PriceTest {
     }
 
     @Test
-    void testCoffeeShopMenuAddItemNonNumberPrice(FxRobot robot) {
+    void testCoffeeShopMenuEditItem0Price(FxRobot robot) {
         Assertions.assertThat(UserService.getAllUsers()).size().isEqualTo(1);
         Assertions.assertThat(CoffeeShopService.getAllCoffeeShops()).size().isEqualTo(1);
 
@@ -108,6 +110,28 @@ public class CoffeeShopMenuControllerEditItem0PriceTest {
         robot.press(KeyCode.BACK_SPACE);
         robot.release(KeyCode.BACK_SPACE);
         robot.write(NEGATIVEZEROPRICE);
+        robot.clickOn("#addNewItemButton");
+        assertThat(robot.lookup("#itemMessage").queryText()).hasText("Price has to be a number greater than 0.");
+
+        robot.clickOn("#editablePriceField");
+        robot.press(KeyCode.CONTROL);
+        robot.press(KeyCode.A);
+        robot.release(KeyCode.CONTROL);
+        robot.release(KeyCode.A);
+        robot.press(KeyCode.BACK_SPACE);
+        robot.release(KeyCode.BACK_SPACE);
+        robot.write(NEGATIVEDOUBLEZEROPRICE);
+        robot.clickOn("#addNewItemButton");
+        assertThat(robot.lookup("#itemMessage").queryText()).hasText("Price has to be a number greater than 0.");
+
+        robot.clickOn("#editablePriceField");
+        robot.press(KeyCode.CONTROL);
+        robot.press(KeyCode.A);
+        robot.release(KeyCode.CONTROL);
+        robot.release(KeyCode.A);
+        robot.press(KeyCode.BACK_SPACE);
+        robot.release(KeyCode.BACK_SPACE);
+        robot.write(POSITIVEDOUBLEZEROPRICE);
         robot.clickOn("#addNewItemButton");
         assertThat(robot.lookup("#itemMessage").queryText()).hasText("Price has to be a number greater than 0.");
 

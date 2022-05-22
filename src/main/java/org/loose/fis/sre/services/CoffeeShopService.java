@@ -1,14 +1,10 @@
 package org.loose.fis.sre.services;
 
 import org.dizitart.no2.Nitrite;
-import org.dizitart.no2.NitriteId;
 import org.dizitart.no2.exceptions.InvalidIdException;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.CoffeeShopAlreadyExistsException;
-import org.loose.fis.sre.exceptions.MenuItemAlreadyExistsException;
 import org.loose.fis.sre.model.CoffeeShop;
-import org.loose.fis.sre.model.CoffeeShopMenuItem;
-import org.loose.fis.sre.model.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

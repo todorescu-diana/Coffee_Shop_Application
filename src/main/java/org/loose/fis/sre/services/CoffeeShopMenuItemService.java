@@ -18,7 +18,7 @@ import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
 public class CoffeeShopMenuItemService {
 
-    public static void addMenuItem(String name, String description, String drinkVolume, float price) throws InvalidIdException, MenuItemAlreadyExistsException {
+    public static void addMenuItem(String name, String description, String drinkVolume, double price) throws InvalidIdException, MenuItemAlreadyExistsException {
         checkMenuItemDoesNotAlreadyExist(name);
         CoffeeShopMenuItem[] newMenuItems = new CoffeeShopMenuItem[CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() + 1];
         int count = 0;
@@ -36,6 +36,9 @@ public class CoffeeShopMenuItemService {
         CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItems(newMenuItems, CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber());
 
         CoffeeShopService.modifyCoffeeShop(CoffeeShopMenuController.getCurrentCoffeeShop());
+//        for(CoffeeShopMenuItem item : CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItems()) {
+//            System.out.println(item.getPrice());
+//        }
     }
 
     public static void removeMenuItem(String name, String description, String drinkVolume) {
@@ -55,7 +58,7 @@ public class CoffeeShopMenuItemService {
         CoffeeShopService.modifyCoffeeShop(CoffeeShopMenuController.getCurrentCoffeeShop());
     }
 
-    public static void modifyMenuItem(String oldName, String name, String description, String drinkVolume, float price) throws MenuItemAlreadyExistsException {
+    public static void modifyMenuItem(String oldName, String name, String description, String drinkVolume, double price) throws MenuItemAlreadyExistsException {
         if(!oldName.equals(name)) {
             removeMenuItem(oldName, description, drinkVolume);
             addMenuItem(name, description, drinkVolume, price);

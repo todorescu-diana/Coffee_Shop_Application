@@ -38,7 +38,7 @@ public class CoffeeShopMenuControllerEditItemNegativePriceTest {
     public static final String NEGATIVEPRICE3 = "-d5";
     public static final String NEGATIVEPRICE4 = "-5.87";
     public static final String POSITIVEPRICE = "80.";
-    public static final int INTPRICE = 100;
+    public static final float FLOATPRICE = 100;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -56,7 +56,7 @@ public class CoffeeShopMenuControllerEditItemNegativePriceTest {
             break;
         }
         CoffeeShopMenuItem[] menuItems = new CoffeeShopMenuItem[1];
-        menuItems[0] = new CoffeeShopMenuItem(NONEMPTYCOFFEENAME,DESCRIPTION,DRINKVOLUME,INTPRICE);
+        menuItems[0] = new CoffeeShopMenuItem(NONEMPTYCOFFEENAME,DESCRIPTION,DRINKVOLUME,FLOATPRICE);
         currentCoffeeShop.setMenuItems(menuItems, 1);
         currentCoffeeShop.setMenuItemsNumber(1);
 
@@ -72,7 +72,7 @@ public class CoffeeShopMenuControllerEditItemNegativePriceTest {
     }
 
     @Test
-    void testCoffeeShopMenuAddItemNonNumberPrice(FxRobot robot) {
+    void testCoffeeShopMenuEditItemNegativePrice(FxRobot robot) {
         Assertions.assertThat(UserService.getAllUsers()).size().isEqualTo(1);
         Assertions.assertThat(CoffeeShopService.getAllCoffeeShops()).size().isEqualTo(1);
 

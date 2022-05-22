@@ -2,9 +2,8 @@ package org.loose.fis.sre.model;
 
 public class Card {
     private String cardNumber;
-    private int balance = 0;
-
-    public Card(String cardNumber, int balance) {
+    private double balance = 0;
+    public Card(String cardNumber, double balance) {
         this.cardNumber = cardNumber;
         this.balance = balance;
     }
@@ -20,9 +19,9 @@ public class Card {
         this.cardNumber = cardNumber;
     }
 
-    public int getBalance() { return balance; }
+    public double getBalance() { return balance; }
 
-    public void setBalance(int balance) {
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 }

@@ -11,9 +11,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.loose.fis.sre.model.CoffeeShopMenuItem;
 import org.loose.fis.sre.model.Order;
 import org.loose.fis.sre.services.CoffeeShopMenuItemService;
+
+import java.io.IOException;
 import java.util.Objects;
 
 import static org.loose.fis.sre.controllers.LoginController.getCurrentUser;
@@ -26,7 +29,7 @@ public class OrderListClientController {
 
     public void initialize () {
 
-        System.out.println(getCurrentUser().getOrderNumber());
+//        System.out.println(getCurrentUser().getOrderNumber());
         if(getCurrentUser().getOrderNumber() > 0 ) {
             for(Order order: getCurrentUser().getOrderList()) {
                 createNewOrderContainer(order);
@@ -48,9 +51,8 @@ public class OrderListClientController {
         Text coffeeShopNameField = new Text(order.getCoffeeShopName());
 
         VBox itemsVBox = new VBox();
-        System.out.println("order items number: " + order.getItemNumber());
+//        System.out.println("order items number: " + order.getItemNumber());
         for(CoffeeShopMenuItem item : order.getItems()) {
-            System.out.println("check");
             boolean isDistinct = true;
 
             if(distinctCount > 0) {
@@ -89,5 +91,16 @@ public class OrderListClientController {
         newHBox.getChildren().addAll(newTitledPane);
 
         verticalBoxContainer.getChildren().add(newHBox);
+    }
+
+    public void handleBackButtonPress(javafx.event.ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();
+        currentStage.close();
+
+        Parent coffeeShopMenuClient = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coffeeShopList.fxml")));
+        Scene newScene = new Scene(coffeeShopMenuClient);
+        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        newStage.setScene(newScene);
+        newStage.show();
     }
 }

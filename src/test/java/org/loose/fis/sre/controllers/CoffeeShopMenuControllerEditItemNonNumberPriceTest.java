@@ -36,7 +36,7 @@ public class CoffeeShopMenuControllerEditItemNonNumberPriceTest {
     public static final String NONUMBERPRICE2 = "dajdv93";
     public static final String NONUMBERPRICE3 = "u7w";
     public static final String NUMBERPRICE = "1";
-    public static final int INTPRICE = 100;
+    public static final float FLOATPRICE = 100;
 
     @BeforeEach
     void setUp() throws Exception {
@@ -54,7 +54,7 @@ public class CoffeeShopMenuControllerEditItemNonNumberPriceTest {
             break;
         }
         CoffeeShopMenuItem[] menuItems = new CoffeeShopMenuItem[1];
-        menuItems[0] = new CoffeeShopMenuItem(NONEMPTYCOFFEENAME,DESCRIPTION,DRINKVOLUME,INTPRICE);
+        menuItems[0] = new CoffeeShopMenuItem(NONEMPTYCOFFEENAME,DESCRIPTION,DRINKVOLUME,FLOATPRICE);
         currentCoffeeShop.setMenuItems(menuItems, 1);
         currentCoffeeShop.setMenuItemsNumber(1);
 
@@ -70,7 +70,7 @@ public class CoffeeShopMenuControllerEditItemNonNumberPriceTest {
     }
 
     @Test
-    void testCoffeeShopMenuAddItemNonNumberPrice(FxRobot robot) {
+    void testCoffeeShopMenuEditItemNonNumberPrice(FxRobot robot) {
         Assertions.assertThat(UserService.getAllUsers()).size().isEqualTo(1);
         Assertions.assertThat(CoffeeShopService.getAllCoffeeShops()).size().isEqualTo(1);
 

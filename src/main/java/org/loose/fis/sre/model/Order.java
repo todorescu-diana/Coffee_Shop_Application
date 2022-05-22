@@ -9,7 +9,7 @@ public class Order {
 
     private String coffeeShopName;
 
-    private int price;
+    private double price;
 
     public Order(CoffeeShopMenuItem[] items, String orderDate, String coffeeShopName) {
         this.items = items;
@@ -91,9 +91,9 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public int getOrderPrice() { return price; }
+    public double getOrderPrice() { return price; }
 
-    public void setOrderPrice(int price) {
+    public void setOrderPrice(double price) {
         this.price = price;
     }
 
@@ -106,7 +106,7 @@ public class Order {
     }
 
     public void calculateOrderPrice() {
-        int p = 0;
+        double p = 0;
         if(this.getItemNumber() > 0) {
             for(CoffeeShopMenuItem item : this.getItems()) {
                 p += item.getPrice();

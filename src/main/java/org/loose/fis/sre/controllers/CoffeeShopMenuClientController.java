@@ -45,15 +45,21 @@ public class CoffeeShopMenuClientController {
         String selectedCoffeeShop = CoffeeShopListController.getSelectedCoffeeShopName();
         ObjectRepository<CoffeeShop> coffeeShopsRepository = getCoffeeShopsRepository();
 
+        int itemIndex = 0;
+
         for(CoffeeShop shop : coffeeShopsRepository.find()) {
             if(Objects.equals(shop.getName(), selectedCoffeeShop)) {
                 currentCoffeeShop = shop;
+//                for(CoffeeShopMenuItem item : currentCoffeeShop.getMenuItems()) {
+//                    System.out.println(item.getPrice());
+//                }
             }
         }
 
         if(currentCoffeeShop.getMenuItemsNumber() > 0) {
             for (CoffeeShopMenuItem item : currentCoffeeShop.getMenuItems()) {
-                createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume(), item.getPrice(), item);
+                createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume(), item.getPrice(), item, itemIndex);
+                itemIndex++;
             }
         }
 
@@ -72,7 +78,7 @@ public class CoffeeShopMenuClientController {
         newStage.show();
     }
 
-    public void createNewItemContainer(String name, String description, String drinkVolume, float price, CoffeeShopMenuItem item) {
+    public void createNewItemContainer(String name, String description, String drinkVolume, double price, CoffeeShopMenuItem item, int itemIndex) {
         HBox newHBox = new HBox();
         AnchorPane newPanelContent = new AnchorPane();
 
@@ -80,6 +86,8 @@ public class CoffeeShopMenuClientController {
         VBox newVBoxInfo = new VBox();
 
         Text nameField = new Text(name);
+        String nameFieldId = "coffeeNameField" + String.valueOf(itemIndex);
+        nameField.setId(nameFieldId);
         Text descriptionField = new Text(description);
         Text drinkVolumeField = new Text(drinkVolume);
         Text priceField = new Text(String.valueOf(price));
@@ -98,14 +106,20 @@ public class CoffeeShopMenuClientController {
                 newTitledPane.setMinHeight(isExpanded ? 200 : Region.USE_PREF_SIZE));
 
         Button newDecrementButton = new Button("-");
+        String decrementButtonId = "decrementButton" + String.valueOf(itemIndex);
+        newDecrementButton.setId(decrementButtonId);
         newDecrementButton.setOnAction((event) -> {
+            if(currentOrder.getItemNumber() == 1) newHBox.getChildren().remove(newDecrementButton);
             if(currentOrder.getItemNumber() > 0) currentOrder.removeItem(item, currentOrder);
         });
         Button newIncrementButton = new Button("+");
+        String incrementButtonId = "incrementButton" + String.valueOf(itemIndex);
+        newIncrementButton.setId(incrementButtonId);
         newIncrementButton.setOnAction((event) -> {
             currentOrder.addItem(item, currentOrder);
+            if(currentOrder.getItemNumber() == 1 ) newHBox.getChildren().add(newDecrementButton);
         });
-        newHBox.getChildren().addAll(newTitledPane, newDecrementButton, newIncrementButton);
+        newHBox.getChildren().addAll(newTitledPane, newIncrementButton);
 
         verticalBoxContainer.getChildren().add(newHBox);
     }

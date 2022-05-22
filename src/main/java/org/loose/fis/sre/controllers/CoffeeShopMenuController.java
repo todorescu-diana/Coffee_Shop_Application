@@ -48,7 +48,7 @@ public class CoffeeShopMenuController {
 
     public static CoffeeShop getCurrentCoffeeShop() {return currentCoffeeShop;}
 
-    public void createNewItemContainer(String name, String description, String drinkVolume, float price) {
+    public void createNewItemContainer(String name, String description, String drinkVolume, double price) {
         HBox newHBox = new HBox();
         AnchorPane newPanelContent = new AnchorPane();
 
@@ -78,7 +78,7 @@ public class CoffeeShopMenuController {
         Button newEditButton = new Button("Edit");
         newEditButton.setId("editItemButton");
         newEditButton.setOnAction((event) -> {
-            createNewEditableItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Float.parseFloat(priceField.getText()));
+            createNewEditableItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Double.parseDouble(priceField.getText()));
             verticalBoxContainer.getChildren().remove(newHBox);
         });
         Button newDeleteButton = new Button("Delete");
@@ -117,12 +117,12 @@ public class CoffeeShopMenuController {
         addNewItemButton.setOnAction((event) -> {
             try {
                 if(Objects.equals(nameField.getText(), "")) itemMessage.setText("Menu item name cannot be empty.");
-                else if(priceField.getText().contains("-") || Objects.equals(priceField.getText(), "0")) itemMessage.setText("Price has to be a number greater than 0.");
+                else if(priceField.getText().contains("-") || Objects.equals(priceField.getText(), "0") || Objects.equals(priceField.getText(), "0.0")) itemMessage.setText("Price has to be a number greater than 0.");
                 else {
                     try {
-                        Float.parseFloat(priceField.getText());
-                        CoffeeShopMenuItemService.addMenuItem(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Float.parseFloat(priceField.getText()));
-                        createNewItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Float.parseFloat(priceField.getText()));
+                        Double.parseDouble(priceField.getText());
+                        CoffeeShopMenuItemService.addMenuItem(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Double.parseDouble(priceField.getText()));
+                        createNewItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Double.parseDouble(priceField.getText()));
                         verticalBoxContainer.getChildren().remove(newHBox);
                     }
                     catch(NumberFormatException ex) {
@@ -160,7 +160,7 @@ public class CoffeeShopMenuController {
         verticalBoxContainer.getChildren().add(newHBox);
     }
 
-    public void createNewEditableItemContainer(String nameFieldDefaultValue, String descriptionFieldDefaultValue, String drinkVolumeFieldDefaultValue, float priceFieldDefaultValue) {
+    public void createNewEditableItemContainer(String nameFieldDefaultValue, String descriptionFieldDefaultValue, String drinkVolumeFieldDefaultValue, double priceFieldDefaultValue) {
 
         HBox newHBox = new HBox();
         AnchorPane newPanelContent = new AnchorPane();
@@ -189,12 +189,12 @@ public class CoffeeShopMenuController {
         addNewItemButton.setOnAction((event) -> {
             try {
                 if(Objects.equals(nameField.getText(), "")) itemMessage.setText("Menu item name cannot be empty.");
-                else if(priceField.getText().contains("-") || Objects.equals(priceField.getText(), "0")) itemMessage.setText("Price has to be a number greater than 0.");
+                else if(priceField.getText().contains("-") || Objects.equals(priceField.getText(), "0") || Objects.equals(priceField.getText(), "0.0")) itemMessage.setText("Price has to be a number greater than 0.");
                 else {
                     try {
-                        Float.parseFloat(priceField.getText());
-                        CoffeeShopMenuItemService.modifyMenuItem(nameFieldDefaultValue, nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Float.parseFloat(priceField.getText()));
-                        createNewItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Float.parseFloat(priceField.getText()));
+                        Double.parseDouble(priceField.getText());
+                        CoffeeShopMenuItemService.modifyMenuItem(nameFieldDefaultValue, nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Double.parseDouble(priceField.getText()));
+                        createNewItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Double.parseDouble(priceField.getText()));
                         verticalBoxContainer.getChildren().remove(newHBox);
                     } catch(NumberFormatException ex) {
                         itemMessage.setText("Price has to be a number.");

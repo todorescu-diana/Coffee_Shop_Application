@@ -8,6 +8,7 @@ import org.loose.fis.sre.model.User;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Objects;
 
 import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
@@ -33,7 +34,11 @@ public class CardService {
         return cardRepository;
     }
 
-    public static void addCard(String cardNumber, int balance) throws InvalidIdException {
+    public static List<Card> getAllCards() {
+        return cardRepository.find().toList();
+    }
+
+    public static void addCard(String cardNumber, double balance) throws InvalidIdException {
         if(!checkCardDoesNotAlreadyExist(cardNumber)) cardRepository.insert(new Card(cardNumber, balance));
     }
 

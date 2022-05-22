@@ -22,7 +22,7 @@ public class Main extends Application {
         CoffeeShopService.initDatabase();
         CardService.initDatabase();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("login.fxml")));
-        primaryStage.setTitle("Coffee Shop Application - Login");
+        primaryStage.setTitle("Coffee Shop Application");
         primaryStage.setScene(new Scene(root));
         primaryStage.sizeToScene();
         primaryStage.show();

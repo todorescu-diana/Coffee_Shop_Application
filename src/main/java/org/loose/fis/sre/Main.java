@@ -17,7 +17,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //initDirectory();
         UserService.initDatabase();
         CoffeeShopService.initDatabase();
         CardService.initDatabase();

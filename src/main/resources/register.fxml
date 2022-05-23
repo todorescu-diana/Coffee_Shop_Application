@@ -47,7 +47,7 @@
       </children>
    </VBox>
 
-    <Text id="registrationMessage" fx:id="registrationMessage" fill="MAROON" layoutX="395.0" layoutY="316.0" text="" wrappingWidth="125.00000476837158" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+          <Text id="registrationMessage" fx:id="registrationMessage" fill="MAROON" layoutX="415.0" layoutY="326.0" text="" wrappingWidth="125.00000476837158" GridPane.columnIndex="1" GridPane.rowIndex="7" />
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5" />
     <Button id="registerButton" layoutX="273.0" layoutY="315.0" onAction="#handleRegisterAction" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Register" />
     <Button id="goToLogin" layoutX="235.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleGoToLoginAction" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Go back to Login Page" />

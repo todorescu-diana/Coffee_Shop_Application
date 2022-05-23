@@ -168,7 +168,7 @@ public class CoffeeShopMenuController {
         Text priceText = new Text("Price:");
         priceText.setFill(Color.web("#ffffcc"));
 
-        newVBoxTitles.getChildren().addAll(nameText, descriptionText, drinkVolumeText, priceText);
+        newVBoxTitles.getChildren().addAll(nameText, descriptionText, drinkVolumeText, priceText,  addNewItemButton);
         newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
         newHBox.getChildren().addAll(newVBoxTitles, newVBoxInfo);

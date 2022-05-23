@@ -19,7 +19,7 @@ public class CardService {
 
     public static void initDatabase() {
         Nitrite database = Nitrite.builder()
-                .filePath(getPathToFile("cards.db").toFile())
+                .filePath(getPathToFile("cardServiceDatabase.db").toFile())
                 .openOrCreate("test", "test");
 
         cardRepository = database.getRepository(Card.class);

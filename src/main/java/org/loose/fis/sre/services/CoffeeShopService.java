@@ -20,7 +20,7 @@ public class CoffeeShopService {
     public static void initDatabase() {
         FileSystemService.initDirectory();
         Nitrite database = Nitrite.builder()
-                .filePath(getPathToFile("coffeeShops.db").toFile())
+                .filePath(getPathToFile("coffeeShopsDatabase.db").toFile())
                 .openOrCreate("test", "test");
 
         coffeeShopsRepository = database.getRepository(CoffeeShop.class);

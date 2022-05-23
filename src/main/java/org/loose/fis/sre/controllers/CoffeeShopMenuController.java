@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.dizitart.no2.exceptions.InvalidIdException;
@@ -62,15 +63,28 @@ public class CoffeeShopMenuController {
         HBox container = new HBox();
 
         Text nameField = new Text(name);
+        nameField.setFill(Color.web("#ffffcc"));
         nameField.setId("nameField");
         Text descriptionField = new Text(description);
+        descriptionField.setFill(Color.web("#ffffcc"));
         descriptionField.setId("descriptionField");
         Text drinkVolumeField = new Text(drinkVolume);
+        drinkVolumeField.setFill(Color.web("#ffffcc"));
         drinkVolumeField.setId("drinkVolumeField");
         Text priceField = new Text(String.valueOf(price));
+        priceField.setFill(Color.web("#ffffcc"));
         priceField.setId("priceField");
 
-        newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), new Text("Price:"));
+        Text nameText = new Text("Name:");
+        nameText.setFill(Color.web("#ffffcc"));
+        Text descriptionText = new Text("Name:");
+        descriptionText.setFill(Color.web("#ffffcc"));
+        Text drinkVolumeText = new Text("Name:");
+        drinkVolumeText.setFill(Color.web("#ffffcc"));
+        Text priceText = new Text("Name:");
+        priceText.setFill(Color.web("#ffffcc"));
+
+        newVBoxTitles.getChildren().addAll(nameText, descriptionText, drinkVolumeText, priceText);
         newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
         newHBox.getChildren().addAll(newVBoxTitles, newVBoxInfo);
@@ -112,6 +126,7 @@ public class CoffeeShopMenuController {
         priceField.setId("editablePriceField");
 
         Text itemMessage = new Text("");
+        itemMessage.setFill(Color.MAROON);
         itemMessage.setId("itemMessage");
 
         HBox container = new HBox();
@@ -144,7 +159,16 @@ public class CoffeeShopMenuController {
 
         });
 
-        newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), new Text("Price:"), addNewItemButton, itemMessage);
+        Text nameText = new Text("Name:");
+        nameText.setFill(Color.web("#ffffcc"));
+        Text descriptionText = new Text("Name:");
+        descriptionText.setFill(Color.web("#ffffcc"));
+        Text drinkVolumeText = new Text("Name:");
+        drinkVolumeText.setFill(Color.web("#ffffcc"));
+        Text priceText = new Text("Name:");
+        priceText.setFill(Color.web("#ffffcc"));
+
+        newVBoxTitles.getChildren().addAll(nameText, descriptionText, drinkVolumeText, priceText);
         newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
         newHBox.getChildren().addAll(newVBoxTitles, newVBoxInfo);
@@ -183,6 +207,7 @@ public class CoffeeShopMenuController {
         priceField.setText(String.valueOf(priceFieldDefaultValue));
 
         Text itemMessage = new Text("");
+        itemMessage.setFill(Color.MAROON);
         itemMessage.setId("itemMessage");
 
         HBox container = new HBox();
@@ -211,7 +236,16 @@ public class CoffeeShopMenuController {
             }
         });
 
-        newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), new Text("Price:"), addNewItemButton, itemMessage);
+        Text nameText = new Text("Name:");
+        nameText.setFill(Color.web("#ffffcc"));
+        Text descriptionText = new Text("Name:");
+        descriptionText.setFill(Color.web("#ffffcc"));
+        Text drinkVolumeText = new Text("Name:");
+        drinkVolumeText.setFill(Color.web("#ffffcc"));
+        Text priceText = new Text("Name:");
+        priceText.setFill(Color.web("#ffffcc"));
+
+        newVBoxTitles.getChildren().addAll(nameText, descriptionText, drinkVolumeText, priceText, addNewItemButton, itemMessage);
         newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
         newHBox.getChildren().addAll(newVBoxTitles, newVBoxInfo);

@@ -1,12 +1,17 @@
 package org.loose.fis.sre.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.dizitart.no2.exceptions.InvalidIdException;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.exceptions.MenuItemAlreadyExistsException;
@@ -14,6 +19,7 @@ import org.loose.fis.sre.model.CoffeeShop;
 import org.loose.fis.sre.model.CoffeeShopMenuItem;
 import org.loose.fis.sre.services.CoffeeShopMenuItemService;
 
+import java.io.IOException;
 import java.util.Objects;
 
 import static org.loose.fis.sre.controllers.LoginController.getCurrentUser;
@@ -206,6 +212,28 @@ public class CoffeeShopMenuController {
         newHBox.getChildren().addAll(newTitledPane, newEditButton, newDeleteButton);
 
         verticalBoxContainer.getChildren().add(newHBox);
+    }
+
+    public void handleGoToCoffeeShopMenu(javafx.event.ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();
+        currentStage.close();
+
+        Parent coffeeShopList = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coffeeShopMenu.fxml")));
+        Scene newScene = new Scene(coffeeShopList);
+        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        newStage.setScene(newScene);
+        newStage.show();
+    }
+
+    public void handleGoToTodaysOrders(javafx.event.ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();
+        currentStage.close();
+
+        Parent coffeeShopList = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("todaysOrders.fxml")));
+        Scene newScene = new Scene(coffeeShopList);
+        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        newStage.setScene(newScene);
+        newStage.show();
     }
 
     @FXML

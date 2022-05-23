@@ -72,6 +72,7 @@ public class CoffeeShopMenuItemService {
                     item.setName(name);
                     item.setDescription(description);
                     item.setDrinkVolume(drinkVolume);
+                    item.setPrice(price);
                 }
                 newMenuItems[count++] = item;
             }

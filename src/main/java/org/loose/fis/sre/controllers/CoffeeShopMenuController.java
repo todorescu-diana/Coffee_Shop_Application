@@ -47,6 +47,7 @@ public class CoffeeShopMenuController {
     }
 
     public static CoffeeShop getCurrentCoffeeShop() {return currentCoffeeShop;}
+    public static void setCurrentCoffeeShop(CoffeeShop coffeeShop) {currentCoffeeShop = coffeeShop;}
 
     public void createNewItemContainer(String name, String description, String drinkVolume, double price) {
         HBox newHBox = new HBox();

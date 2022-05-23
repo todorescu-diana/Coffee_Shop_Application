@@ -27,5 +27,5 @@
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5" />
     <Button id="goToSignUpButton" layoutX="198.0" layoutY="318.0" onAction="#handleGoToSignUpAction" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Don't have an account? Sign up" />
     <Button id="loginButton" layoutX="272.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleLoginAction" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Login" />
-   <Text id="loginMessage" fx:id="loginMessage" layoutX="202.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="218.0" />
+   <Text id="loginMessage" fx:id="loginMessage" fill="MAROON" layoutX="202.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="218.0" />
 </AnchorPane>

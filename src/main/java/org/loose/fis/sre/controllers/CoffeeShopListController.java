@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.dizitart.no2.objects.ObjectRepository;
@@ -47,7 +48,7 @@ public class CoffeeShopListController {
         VBox newVBoxInfo = new VBox(10);
 
         Text nameField = new Text(name);
-        nameField.setStyle("-fx-text-fill: #800000;");
+        nameField.setFill(Color.MAROON);
         String nameFieldId = "shopNameField" + String.valueOf(shopIndex);
         nameField.setId(nameFieldId);
 

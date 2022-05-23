@@ -4,21 +4,24 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopMenuController">
    <content>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffcc;">
          <children>
-            <Button id="addItemButton" layoutX="484.0" layoutY="26.0" mnemonicParsing="false" onAction="#handleAddItemAction" text="Add Item" />
-            <Text id="coffeeShopMenuManagerText" layoutX="14.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Menu" />
+            <Button id="addItemButton" layoutX="502.0" layoutY="116.0" mnemonicParsing="false" onAction="#handleAddItemAction" style="-fx-text-fill: #ffffcc; -fx-background-color: #800000;" text="Add Item" />
+            <Text id="coffeeShopMenuManagerText" fill="MAROON" layoutX="14.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Coffee Shop's Menu">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font></Text>
             <VBox id="verticalBoxContainer" fx:id="verticalBoxContainer" layoutX="14.0" layoutY="65.0">
                <children>
                </children>
             </VBox>
-            <Button onAction="#handleGoToCoffeeShopMenu" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" text="My Coffee Shop's Menu" />
-            <Button onAction="#handleGoToTodaysOrders" layoutX="268.0" layoutY="11.0" mnemonicParsing="false" text="Today's Orders" />
+            <Button layoutX="430.0" layoutY="15.0" mnemonicParsing="false" onAction="#handleGoToCoffeeShopMenu" style="-fx-text-fill: #ffffcc; -fx-background-color: #800000;" text="My Coffee Shop's Menu" />
+            <Button layoutX="480.0" layoutY="65.0" mnemonicParsing="false" onAction="#handleGoToTodaysOrders" style="-fx-text-fill: #ffffcc; -fx-background-color: #800000;" text="Today's Orders" />
          </children>
       </AnchorPane>
    </content>

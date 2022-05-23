@@ -19,7 +19,7 @@
                     <children>
                     </children>
                 </VBox>
-                <Button layoutX="458.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleGoToCoffeeShopListPress" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Coffee Shop List" />
+                <Button layoutX="466.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleGoToCoffeeShopListPress" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Coffee Shop List" />
                 <Button layoutX="489.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleGoToPastOrdersPress" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Past Orders" />
             </children>
         </AnchorPane>

@@ -34,6 +34,9 @@ public class CoffeeShopMenuController {
     public void initialize () {
         ObjectRepository<CoffeeShop> coffeeShopsRepository = getCoffeeShopsRepository();
 
+        verticalBoxContainer.setSpacing(30);
+        verticalBoxContainer.setStyle("-fx-padding: 20 0 30 3");
+
         for(CoffeeShop shop : coffeeShopsRepository.find()) {
             if(Objects.equals(shop.getOwner(), getCurrentUser().getUsername())) {
                currentCoffeeShop = shop;
@@ -50,11 +53,13 @@ public class CoffeeShopMenuController {
     public static void setCurrentCoffeeShop(CoffeeShop coffeeShop) {currentCoffeeShop = coffeeShop;}
 
     public void createNewItemContainer(String name, String description, String drinkVolume, double price) {
-        HBox newHBox = new HBox();
-        AnchorPane newPanelContent = new AnchorPane();
+        HBox newHBox = new HBox(50);
+        newHBox.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc; -fx-background-radius: 5px; -fx-padding: 10 10 10 10");
 
-        VBox newVBoxTitles = new VBox();
-        VBox newVBoxInfo = new VBox();
+        VBox newVBoxTitles = new VBox(10);
+        VBox newVBoxInfo = new VBox(10);
+
+        HBox container = new HBox();
 
         Text nameField = new Text(name);
         nameField.setId("nameField");
@@ -66,40 +71,36 @@ public class CoffeeShopMenuController {
         priceField.setId("priceField");
 
         newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), new Text("Price:"));
-        newVBoxInfo.setLayoutX(104.0);
         newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
-        newPanelContent.getChildren().addAll(newVBoxTitles, newVBoxInfo);
-        TitledPane newTitledPane = new TitledPane(name, newPanelContent);
-        newTitledPane.setPrefWidth(241);
-        newTitledPane.setPrefHeight(200);
-        newTitledPane.expandedProperty().addListener((observable, wasExpanded, isExpanded) ->
-                newTitledPane.setMinHeight(isExpanded ? 200 : Region.USE_PREF_SIZE));
+        newHBox.getChildren().addAll(newVBoxTitles, newVBoxInfo);
 
         Button newEditButton = new Button("Edit");
         newEditButton.setId("editItemButton");
+        newEditButton.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc;");
         newEditButton.setOnAction((event) -> {
             createNewEditableItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Double.parseDouble(priceField.getText()));
-            verticalBoxContainer.getChildren().remove(newHBox);
+            verticalBoxContainer.getChildren().remove(container);
         });
         Button newDeleteButton = new Button("Delete");
+        newDeleteButton.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc;");
         newDeleteButton.setOnAction((event) -> {
             CoffeeShopMenuItemService.removeMenuItem(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText());
-            verticalBoxContainer.getChildren().remove(newHBox);
+            verticalBoxContainer.getChildren().remove(container);
         });
-        newHBox.getChildren().addAll(newTitledPane, newEditButton, newDeleteButton);
+        container.getChildren().addAll(newHBox, newEditButton, newDeleteButton);
 
-        newHBox.setId("vboxchild");
+        verticalBoxContainer.getChildren().add(container);
 
-        verticalBoxContainer.getChildren().add(newHBox);
+        container.setId("vboxchild");
     }
 
     public void createNewEditableItemContainer() {
-        HBox newHBox = new HBox();
-        AnchorPane newPanelContent = new AnchorPane();
+        HBox newHBox = new HBox(50);
+        newHBox.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc; -fx-background-radius: 5px; -fx-padding: 10 10 10 10");
 
-        VBox newVBoxTitles = new VBox();
-        VBox newVBoxInfo = new VBox();
+        VBox newVBoxTitles = new VBox(10);
+        VBox newVBoxInfo = new VBox(10);
 
         TextField nameField = new TextField();
         TextField descriptionField = new TextField();
@@ -113,8 +114,11 @@ public class CoffeeShopMenuController {
         Text itemMessage = new Text("");
         itemMessage.setId("itemMessage");
 
+        HBox container = new HBox();
+
         Button addNewItemButton = new Button("Add New Item");
         addNewItemButton.setId("addNewItemButton");
+        addNewItemButton.setStyle("-fx-background-color: #ffffcc; -fx-text-fill: #800000;");
         addNewItemButton.setOnAction((event) -> {
             try {
                 if(Objects.equals(nameField.getText(), "")) itemMessage.setText("Menu item name cannot be empty.");
@@ -124,7 +128,7 @@ public class CoffeeShopMenuController {
                         Double.parseDouble(priceField.getText());
                         CoffeeShopMenuItemService.addMenuItem(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Double.parseDouble(priceField.getText()));
                         createNewItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Double.parseDouble(priceField.getText()));
-                        verticalBoxContainer.getChildren().remove(newHBox);
+                        verticalBoxContainer.getChildren().remove(container);
                     }
                     catch(NumberFormatException ex) {
                         itemMessage.setText("Price has to be a number.");
@@ -141,33 +145,29 @@ public class CoffeeShopMenuController {
         });
 
         newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), new Text("Price:"), addNewItemButton, itemMessage);
-        newVBoxInfo.setLayoutX(104.0);
         newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
-        newPanelContent.getChildren().addAll(newVBoxTitles, newVBoxInfo);
-        TitledPane newTitledPane = new TitledPane("New Item", newPanelContent);
-        newTitledPane.setPrefWidth(241);
-        newTitledPane.setPrefHeight(200);
-        newTitledPane.expandedProperty().addListener((observable, wasExpanded, isExpanded) ->
-                newTitledPane.setMinHeight(isExpanded ? 200 : Region.USE_PREF_SIZE));
+        newHBox.getChildren().addAll(newVBoxTitles, newVBoxInfo);
 
         Button newDeleteButton = new Button("Delete");
+        newDeleteButton.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc;");
         newDeleteButton.setOnAction((event) -> {
                 CoffeeShopMenuItemService.removeMenuItem(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText());
-                verticalBoxContainer.getChildren().remove(newHBox);
+                verticalBoxContainer.getChildren().remove(container);
         });
-        newHBox.getChildren().addAll(newTitledPane, newDeleteButton);
 
-        verticalBoxContainer.getChildren().add(newHBox);
+        container.getChildren().addAll(newHBox, newDeleteButton);
+
+        verticalBoxContainer.getChildren().add(container);
     }
 
     public void createNewEditableItemContainer(String nameFieldDefaultValue, String descriptionFieldDefaultValue, String drinkVolumeFieldDefaultValue, double priceFieldDefaultValue) {
 
-        HBox newHBox = new HBox();
-        AnchorPane newPanelContent = new AnchorPane();
+        HBox newHBox = new HBox(50);
+        newHBox.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc; -fx-background-radius: 5px; -fx-padding: 10 10 10 10");
 
-        VBox newVBoxTitles = new VBox();
-        VBox newVBoxInfo = new VBox();
+        VBox newVBoxTitles = new VBox(10);
+        VBox newVBoxInfo = new VBox(10);
 
         TextField nameField = new TextField();
         TextField descriptionField = new TextField();
@@ -185,8 +185,11 @@ public class CoffeeShopMenuController {
         Text itemMessage = new Text("");
         itemMessage.setId("itemMessage");
 
+        HBox container = new HBox();
+
         Button addNewItemButton = new Button("Add New Item");
         addNewItemButton.setId("addNewItemButton");
+        addNewItemButton.setStyle("-fx-background-color: #ffffcc; -fx-text-fill: #800000;");
         addNewItemButton.setOnAction((event) -> {
             try {
                 if(Objects.equals(nameField.getText(), "")) itemMessage.setText("Menu item name cannot be empty.");
@@ -196,7 +199,7 @@ public class CoffeeShopMenuController {
                         Double.parseDouble(priceField.getText());
                         CoffeeShopMenuItemService.modifyMenuItem(nameFieldDefaultValue, nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Double.parseDouble(priceField.getText()));
                         createNewItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Double.parseDouble(priceField.getText()));
-                        verticalBoxContainer.getChildren().remove(newHBox);
+                        verticalBoxContainer.getChildren().remove(container);
                     } catch(NumberFormatException ex) {
                         itemMessage.setText("Price has to be a number.");
                     }
@@ -209,24 +212,20 @@ public class CoffeeShopMenuController {
         });
 
         newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), new Text("Price:"), addNewItemButton, itemMessage);
-        newVBoxInfo.setLayoutX(104.0);
         newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
-        newPanelContent.getChildren().addAll(newVBoxTitles, newVBoxInfo);
-        TitledPane newTitledPane = new TitledPane("New Item", newPanelContent);
-        newTitledPane.setPrefWidth(241);
-        newTitledPane.setPrefHeight(200);
-        newTitledPane.expandedProperty().addListener((observable, wasExpanded, isExpanded) ->
-                newTitledPane.setMinHeight(isExpanded ? 200 : Region.USE_PREF_SIZE));
+        newHBox.getChildren().addAll(newVBoxTitles, newVBoxInfo);
 
         Button newDeleteButton = new Button("Delete");
+        newDeleteButton.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc;");
         newDeleteButton.setOnAction((event) -> {
             CoffeeShopMenuItemService.removeMenuItem(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText());
-            verticalBoxContainer.getChildren().remove(newHBox);
+            verticalBoxContainer.getChildren().remove(container);
         });
-        newHBox.getChildren().addAll(newTitledPane, newDeleteButton);
 
-        verticalBoxContainer.getChildren().add(newHBox);
+        container.getChildren().addAll(newHBox, newDeleteButton);
+
+        verticalBoxContainer.getChildren().add(container);
     }
 
     public void handleGoToCoffeeShopMenu(javafx.event.ActionEvent event) throws IOException {

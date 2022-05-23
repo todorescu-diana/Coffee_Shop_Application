@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" prefHeight="400" prefWidth="600"
-          vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal"
-          fx:controller="org.loose.fis.sre.controllers.RegistrationController">
-    <padding>
-        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0"/>
-    </padding>
-    <Text id="title-text" text="FIS - Student Manager" GridPane.columnIndex="0" GridPane.columnSpan="2"
-          GridPane.rowIndex="0"/>
 
-    <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.RegistrationController">
 
-    <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <Label layoutX="134.0" layoutY="127.0" text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <TextField fx:id="usernameField" layoutX="225.0" layoutY="122.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    <Label layoutX="136.0" layoutY="190.0" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <Label text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <PasswordField fx:id="passwordField" layoutX="225.0" layoutY="185.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <ChoiceBox fx:id="role" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+    <Label layoutX="136.0" layoutY="247.0" text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+
+    <ChoiceBox fx:id="role" layoutX="225.0" layoutY="242.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
     </ChoiceBox>
 
-    <Text fx:id="registrationMessage" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
-    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
-        <Button onAction="#handleRegisterAction" text="Register"/>
-    </HBox>
-</GridPane>
+    <Text fx:id="registrationMessage" layoutX="395.0" layoutY="316.0" text="" wrappingWidth="125.00000476837158" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+    <Button layoutX="273.0" layoutY="295.0" onAction="#handleRegisterAction" text="Register" />
+    <Button layoutX="225.0" layoutY="345.0" mnemonicParsing="false" onAction="#handleGoToLoginAction" text="Go back to Login Page" />
+    <Text layoutX="250.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create an account" />
+</AnchorPane>

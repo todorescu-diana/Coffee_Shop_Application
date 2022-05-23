@@ -40,6 +40,9 @@ public class CoffeeShopMenuClientController {
     @FXML
     private Button goToCheckoutButton;
 
+    @FXML
+    private Button backToCoffeeShopsListButton;
+
 
     public void initialize () {
         verticalBoxContainer.setSpacing(30);
@@ -81,6 +84,18 @@ public class CoffeeShopMenuClientController {
         newStage.show();
     }
 
+    @FXML
+    private void onBackPress (javafx.event.ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();
+        currentStage.close();
+        Parent checkout = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coffeeShopList.fxml")));
+
+        Scene newScene = new Scene(checkout);
+        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        newStage.setScene(newScene);
+        newStage.show();
+    }
+
     public void createNewItemContainer(String name, String description, String drinkVolume, double price, CoffeeShopMenuItem item, int itemIndex) {
         HBox newHBox = new HBox(50);
         newHBox.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc; -fx-background-radius: 5px; -fx-padding: 10 10 10 10");
@@ -105,11 +120,11 @@ public class CoffeeShopMenuClientController {
 
         Text nameText = new Text("Name:");
         nameText.setFill(Color.web("#ffffcc"));
-        Text descriptionText = new Text("Name:");
+        Text descriptionText = new Text("Description:");
         descriptionText.setFill(Color.web("#ffffcc"));
-        Text drinkVolumeText = new Text("Name:");
+        Text drinkVolumeText = new Text("Drink volume:");
         drinkVolumeText.setFill(Color.web("#ffffcc"));
-        Text priceText = new Text("Name:");
+        Text priceText = new Text("Price:");
         priceText.setFill(Color.web("#ffffcc"));
 
         newVBoxTitles.getChildren().addAll(nameText, descriptionText, drinkVolumeText, priceText);

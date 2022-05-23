@@ -12,10 +12,12 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.loose.fis.sre.model.CoffeeShopMenuItem;
 import org.loose.fis.sre.model.Order;
 import org.loose.fis.sre.services.CoffeeShopMenuItemService;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -31,7 +33,7 @@ public class TodaysOrdersController {
     public void initialize () {
 
         verticalBoxContainer.setSpacing(30);
-        verticalBoxContainer.setStyle("-fx-padding: 20 0 30 3");
+        verticalBoxContainer.setStyle("-fx-padding: 10 0 20 3");
 
         // System.out.println(getCurrentUser().getOrderNumber());
         if(getCurrentUser().getOrderNumber() > 0 ) {
@@ -83,7 +85,12 @@ public class TodaysOrdersController {
         Text priceField = new Text(String.valueOf(order.getOrderPrice()));
         priceField.setFill(Color.web("#ffffcc"));
 
-        newVBoxTitles.getChildren().addAll(new Text("Items ordered:"), new Text("Order price:"));
+
+        Text itemText = new Text("Items ordered:");
+        itemText.setFill(Color.web("#ffffcc"));
+        Text orderPriceText = new Text("Order price:");
+        orderPriceText.setFill(Color.web("#ffffcc"));
+        newVBoxTitles.getChildren().addAll(itemText, orderPriceText);
         newVBoxInfo.setLayoutX(104.0);
         newVBoxInfo.getChildren().addAll(itemsVBox, priceField);
 
@@ -91,5 +98,17 @@ public class TodaysOrdersController {
         container.getChildren().addAll(newHBox);
 
         verticalBoxContainer.getChildren().add(container);
+    }
+
+    @FXML
+    private void onBackPress (javafx.event.ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();
+        currentStage.close();
+        Parent checkout = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coffeeShopMenu.fxml")));
+
+        Scene newScene = new Scene(checkout);
+        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        newStage.setScene(newScene);
+        newStage.show();
     }
 }

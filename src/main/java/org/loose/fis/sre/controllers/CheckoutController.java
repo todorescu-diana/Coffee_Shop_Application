@@ -74,6 +74,18 @@ public class CheckoutController {
         });
     }
 
+    @FXML
+    private void handleBackPress (javafx.event.ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) payWith.getScene().getWindow();
+        currentStage.close();
+        Parent checkout = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coffeeShopMenuClient.fxml")));
+
+        Scene newScene = new Scene(checkout);
+        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        newStage.setScene(newScene);
+        newStage.show();
+    }
+
     public void handlePlaceOrderPress(javafx.event.ActionEvent event) throws IOException {
         if( !Objects.equals(addressField.getText(), "") ) {
             CoffeeShopMenuClientController.getCurrentOrder().calculateOrderPrice();

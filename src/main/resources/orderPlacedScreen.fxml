@@ -2,12 +2,15 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.OrderPlacedScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffcc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.OrderPlacedScreenController">
    <children>
-      <Text id="orderPlacedText" layoutX="187.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your order was succesfully placed!" />
-      <Button fx:id="homeButton" onAction="#handleGoToHomeScreen" layoutX="210.0" layoutY="263.0" mnemonicParsing="false" text="Go back to home screen" />
+      <Text id="orderPlacedText" layoutX="106.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your order was succesfully placed!">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Text>
+      <Button fx:id="homeButton" layoutX="210.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleGoToHomeScreen" style="-fx-background-color: #800000;" text="Go back to home screen" textFill="#ffffcc" />
    </children>
 </AnchorPane>

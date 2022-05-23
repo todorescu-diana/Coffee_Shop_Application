@@ -22,6 +22,7 @@
       <TextField id="addressField" fx:id="addressField" layoutX="231.0" layoutY="219.0" />
       <Button id="placeOrderButton" fx:id="placeOrderButton" layoutX="252.0" layoutY="305.0" mnemonicParsing="false" onAction="#handlePlaceOrderPress" style="-fx-background-color: #800000;" text="Place Order" textFill="#ffffcc" />
       <Text fx:id="alertMessage" layoutX="220.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="187.000000923872" />
+      <Button id="backButton" fx:id="backButton" layoutX="504.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleBackPress" style="-fx-background-color: #800000;" text="Back" textFill="#ffffcc" />
    </children>
    <opaqueInsets>
       <Insets />

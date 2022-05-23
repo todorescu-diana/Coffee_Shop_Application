@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -20,10 +19,8 @@
                     <children>
                     </children>
                 </VBox>
-            <HBox fx:id="hContainer" layoutX="454.0" layoutY="21.0" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button id="goToCheckoutButton" fx:id="goToCheckoutButton" mnemonicParsing="false" onAction="#onCheckoutPress" style="-fx-background-color: #800000;" text="Go to Checkout" textFill="#ffffcc" />
-               </children></HBox>
+            <Button id="goToCheckoutButton" fx:id="goToCheckoutButton" layoutX="448.0" layoutY="22.0" mnemonicParsing="false" onAction="#onCheckoutPress" style="-fx-background-color: #800000;" text="Go to Checkout" textFill="#ffffcc" />
+            <Button id="backToCoffeeShopsListButton" fx:id="backToCoffeeShopsListButton" layoutX="399.0" layoutY="76.0" mnemonicParsing="false" onAction="#onBackPress" style="-fx-background-color: #800000;" text="Back to Coffee Shops List" textFill="#ffffcc" />
             </children>
         </AnchorPane>
     </content>

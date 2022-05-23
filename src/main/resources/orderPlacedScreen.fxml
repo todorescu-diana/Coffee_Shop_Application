@@ -11,6 +11,6 @@
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Text>
-      <Button fx:id="homeButton" layoutX="210.0" layoutY="263.0" mnemonicParsing="false" onAction="#handleGoToHomeScreen" style="-fx-background-color: #800000;" text="Go back to home screen" textFill="#ffffcc" />
+      <Button fx:id="homeButton" layoutX="231.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleGoToHomeScreen" style="-fx-background-color: #800000;" text="Go back to home screen" textFill="#ffffcc" />
    </children>
 </AnchorPane>

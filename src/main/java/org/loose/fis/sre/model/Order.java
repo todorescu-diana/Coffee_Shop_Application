@@ -113,6 +113,6 @@ public class Order {
             }
         }
 
-        this.setOrderPrice(p);
+        this.setOrderPrice(Math.round(p*100.0)/100.0);
     }
 }

@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.dizitart.no2.exceptions.InvalidIdException;
@@ -39,21 +40,30 @@ public class RegistrationController {
 
     private String coffeeShopRegistrationName;
 
+    private static boolean isCoffeeShopNameFieldVisible = false;
+
     @FXML
     public void initialize() {
         role.getItems().addAll("Client", "Coffee Shop Manager");
 
+        HBox HBoxContainer = new HBox(21);
+        Text itemMessage = new Text("Coffee Shop\nName:");
+        itemMessage.setFill(Color.MAROON);
+        TextField coffeeShopNameField = new TextField();
+        coffeeShopNameField.setId("coffeeShopNameField");
+        coffeeShopNameField.textProperty().addListener((observable, oldValue, newValue) -> {
+            coffeeShopRegistrationName = newValue;
+        });
+        HBoxContainer.getChildren().addAll(itemMessage, coffeeShopNameField);
+
         role.setOnAction((event) -> {
-            if (Objects.equals(role.getValue(), "Coffee Shop Manager")) {
-                HBox HBoxContainer = new HBox();
-                Text itemMessage = new Text("Coffee Shop Name:");
-                TextField coffeeShopNameField = new TextField();
-                coffeeShopNameField.setId("coffeeShopNameField");
-                coffeeShopNameField.textProperty().addListener((observable, oldValue, newValue) -> {
-                    coffeeShopRegistrationName = newValue;
-                });
-                HBoxContainer.getChildren().addAll(itemMessage, coffeeShopNameField);
+            if (Objects.equals(role.getValue(), "Coffee Shop Manager") && !isCoffeeShopNameFieldVisible) {
                 VBoxContainer.getChildren().add(HBoxContainer);
+                isCoffeeShopNameFieldVisible = true;
+            }
+            else if (Objects.equals(role.getValue(), "Client") && isCoffeeShopNameFieldVisible){
+                VBoxContainer.getChildren().remove(HBoxContainer);
+                isCoffeeShopNameFieldVisible = false;
             }
         });
     }

@@ -2,6 +2,7 @@ package org.loose.fis.sre.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -32,6 +33,8 @@ public class CoffeeShopListController {
         ObjectRepository<CoffeeShop> coffeeShopsRepository = getCoffeeShopsRepository();
 
         int shopIndex = 0;
+        verticalBoxContainer.setSpacing(30);
+        verticalBoxContainer.setStyle("-fx-padding: 0 0 30 25");
         for(CoffeeShop shop: coffeeShopsRepository.find()) {
             createNewShopContainer(shop.getName(), shopIndex);
             shopIndex++;
@@ -40,27 +43,16 @@ public class CoffeeShopListController {
 
     public void createNewShopContainer(String name, int shopIndex) {
         HBox newHBox = new HBox();
-        AnchorPane newPanelContent = new AnchorPane();
 
-        VBox newVBoxTitles = new VBox();
-        VBox newVBoxInfo = new VBox();
+        VBox newVBoxInfo = new VBox(10);
 
         Text nameField = new Text(name);
+        nameField.setStyle("-fx-text-fill: #800000;");
         String nameFieldId = "shopNameField" + String.valueOf(shopIndex);
         nameField.setId(nameFieldId);
 
-        newVBoxTitles.getChildren().add(new Text("Name:"));
-        newVBoxInfo.setLayoutX(104.0);
-        newVBoxInfo.getChildren().add(nameField);
-
-        newPanelContent.getChildren().addAll(newVBoxTitles, newVBoxInfo);
-        TitledPane newTitledPane = new TitledPane(name, newPanelContent);
-        newTitledPane.setPrefWidth(241);
-        newTitledPane.setPrefHeight(200);
-        newTitledPane.expandedProperty().addListener((observable, wasExpanded, isExpanded) ->
-                newTitledPane.setMinHeight(isExpanded ? 200 : Region.USE_PREF_SIZE));
-
         Button goToMenuButton = new Button("Go to coffee shop's menu");
+        goToMenuButton.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc;");
         String goToMenuButtonId = "goToMenuButtonId" + String.valueOf(shopIndex);
         goToMenuButton.setId(goToMenuButtonId);
 
@@ -80,7 +72,10 @@ public class CoffeeShopListController {
             newStage.setScene(newScene);
             newStage.show();
         });
-        newHBox.getChildren().addAll(newTitledPane, goToMenuButton);
+
+        newVBoxInfo.getChildren().addAll(nameField, goToMenuButton);
+
+        newHBox.getChildren().addAll(newVBoxInfo);
 
         verticalBoxContainer.getChildren().add(newHBox);
     }

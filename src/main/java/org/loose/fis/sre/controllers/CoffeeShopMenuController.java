@@ -60,7 +60,7 @@ public class CoffeeShopMenuController {
         VBox newVBoxTitles = new VBox(10);
         VBox newVBoxInfo = new VBox(10);
 
-        HBox container = new HBox();
+        HBox container = new HBox(5);
 
         Text nameField = new Text(name);
         nameField.setFill(Color.web("#ffffcc"));
@@ -77,11 +77,11 @@ public class CoffeeShopMenuController {
 
         Text nameText = new Text("Name:");
         nameText.setFill(Color.web("#ffffcc"));
-        Text descriptionText = new Text("Name:");
+        Text descriptionText = new Text("Description:");
         descriptionText.setFill(Color.web("#ffffcc"));
-        Text drinkVolumeText = new Text("Name:");
+        Text drinkVolumeText = new Text("Drink volume:");
         drinkVolumeText.setFill(Color.web("#ffffcc"));
-        Text priceText = new Text("Name:");
+        Text priceText = new Text("Price:");
         priceText.setFill(Color.web("#ffffcc"));
 
         newVBoxTitles.getChildren().addAll(nameText, descriptionText, drinkVolumeText, priceText);
@@ -113,7 +113,7 @@ public class CoffeeShopMenuController {
         HBox newHBox = new HBox(50);
         newHBox.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc; -fx-background-radius: 5px; -fx-padding: 10 10 10 10");
 
-        VBox newVBoxTitles = new VBox(10);
+        VBox newVBoxTitles = new VBox(20);
         VBox newVBoxInfo = new VBox(10);
 
         TextField nameField = new TextField();
@@ -129,7 +129,7 @@ public class CoffeeShopMenuController {
         itemMessage.setFill(Color.MAROON);
         itemMessage.setId("itemMessage");
 
-        HBox container = new HBox();
+        HBox container = new HBox(5);
 
         Button addNewItemButton = new Button("Add New Item");
         addNewItemButton.setId("addNewItemButton");
@@ -161,11 +161,11 @@ public class CoffeeShopMenuController {
 
         Text nameText = new Text("Name:");
         nameText.setFill(Color.web("#ffffcc"));
-        Text descriptionText = new Text("Name:");
+        Text descriptionText = new Text("Description:");
         descriptionText.setFill(Color.web("#ffffcc"));
-        Text drinkVolumeText = new Text("Name:");
+        Text drinkVolumeText = new Text("Drink volume:");
         drinkVolumeText.setFill(Color.web("#ffffcc"));
-        Text priceText = new Text("Name:");
+        Text priceText = new Text("Price:");
         priceText.setFill(Color.web("#ffffcc"));
 
         newVBoxTitles.getChildren().addAll(nameText, descriptionText, drinkVolumeText, priceText);
@@ -190,7 +190,7 @@ public class CoffeeShopMenuController {
         HBox newHBox = new HBox(50);
         newHBox.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc; -fx-background-radius: 5px; -fx-padding: 10 10 10 10");
 
-        VBox newVBoxTitles = new VBox(10);
+        VBox newVBoxTitles = new VBox(20);
         VBox newVBoxInfo = new VBox(10);
 
         TextField nameField = new TextField();
@@ -210,7 +210,7 @@ public class CoffeeShopMenuController {
         itemMessage.setFill(Color.MAROON);
         itemMessage.setId("itemMessage");
 
-        HBox container = new HBox();
+        HBox container = new HBox(5);
 
         Button addNewItemButton = new Button("Add New Item");
         addNewItemButton.setId("addNewItemButton");
@@ -238,11 +238,11 @@ public class CoffeeShopMenuController {
 
         Text nameText = new Text("Name:");
         nameText.setFill(Color.web("#ffffcc"));
-        Text descriptionText = new Text("Name:");
+        Text descriptionText = new Text("Description:");
         descriptionText.setFill(Color.web("#ffffcc"));
-        Text drinkVolumeText = new Text("Name:");
+        Text drinkVolumeText = new Text("Drink volume:");
         drinkVolumeText.setFill(Color.web("#ffffcc"));
-        Text priceText = new Text("Name:");
+        Text priceText = new Text("Price:");
         priceText.setFill(Color.web("#ffffcc"));
 
         newVBoxTitles.getChildren().addAll(nameText, descriptionText, drinkVolumeText, priceText, addNewItemButton, itemMessage);

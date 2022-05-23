@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.loose.fis.sre.model.CoffeeShopMenuItem;
 import org.loose.fis.sre.model.Order;
@@ -72,6 +73,7 @@ public class TodaysOrdersController {
                 }
 
                 Text itemText = new Text(item.getName() + " x " + String.valueOf(itemCount));
+                itemText.setFill(Color.web("#ffffcc"));
 
                 itemsVBox.getChildren().add(itemText);
                 distinctItems[distinctCount++] = item.getName();
@@ -79,6 +81,7 @@ public class TodaysOrdersController {
         }
 
         Text priceField = new Text(String.valueOf(order.getOrderPrice()));
+        priceField.setFill(Color.web("#ffffcc"));
 
         newVBoxTitles.getChildren().addAll(new Text("Items ordered:"), new Text("Order price:"));
         newVBoxInfo.setLayoutX(104.0);

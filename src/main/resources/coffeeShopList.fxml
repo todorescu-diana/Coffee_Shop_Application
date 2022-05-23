@@ -11,7 +11,7 @@
     <content>
         <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffcc;">
             <children>
-                <Text fill="MAROON" layoutX="39.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coffee Shop List">
+                <Text layoutX="39.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coffee Shop List">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font></Text>

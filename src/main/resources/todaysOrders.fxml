@@ -14,7 +14,7 @@
                     <children>
                     </children>
                 </VBox>
-                <Text fill="MAROON" layoutX="22.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today's Orders">
+                <Text layoutX="22.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today's Orders">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font></Text>

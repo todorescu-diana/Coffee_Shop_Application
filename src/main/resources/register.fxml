@@ -51,7 +51,7 @@
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5" />
     <Button id="registerButton" layoutX="273.0" layoutY="315.0" onAction="#handleRegisterAction" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Register" />
     <Button id="goToLogin" layoutX="235.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleGoToLoginAction" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Go back to Login Page" />
-    <Text fill="MAROON" layoutX="209.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create an account">
+    <Text layoutX="209.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create an account">
       <font>
          <Font name="System Bold" size="24.0" />
       </font></Text>

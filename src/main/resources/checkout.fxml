@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="580.0" style="-fx-background-color: #ffffcc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CheckoutController">
    <children>
-      <Text id="checkoutText" fill="MAROON" layoutX="248.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checkout">
+      <Text id="checkoutText" layoutX="248.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checkout">
          <font>
             <Font name="System Bold" size="24.0" />
          </font></Text>

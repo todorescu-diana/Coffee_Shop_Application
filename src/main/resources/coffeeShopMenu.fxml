@@ -9,10 +9,10 @@
 
 <ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopMenuController">
    <content>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffcc;">
+      <AnchorPane prefHeight="400.0" prefWidth="590.0" style="-fx-background-color: #ffffcc;">
          <children>
             <Button id="addItemButton" layoutX="510.0" layoutY="117.0" mnemonicParsing="false" onAction="#handleAddItemAction" style="-fx-text-fill: #ffffcc; -fx-background-color: #800000;" text="Add Item" />
-            <Text id="coffeeShopMenuManagerText" fill="MAROON" layoutX="14.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Coffee Shop's Menu">
+            <Text id="coffeeShopMenuManagerText" layoutX="14.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Coffee Shop's Menu">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font></Text>

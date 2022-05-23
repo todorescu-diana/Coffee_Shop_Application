@@ -33,7 +33,7 @@ public class CoffeeShop {
         menuItems = new CoffeeShopMenuItem[arrLength];
         int count = 0;
         for(CoffeeShopMenuItem item : arr) {
-            if(count < 100) menuItems[count++] = item;
+            menuItems[count++] = item;
         }
     }
 

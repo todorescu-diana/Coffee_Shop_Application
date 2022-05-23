@@ -18,7 +18,7 @@ import static org.loose.fis.sre.services.FileSystemService.getPathToFile;
 
 public class CoffeeShopMenuItemService {
 
-    public static void addMenuItem(String name, String description, String drinkVolume) throws InvalidIdException, MenuItemAlreadyExistsException {
+    public static void addMenuItem(String name, String description, String drinkVolume, int price) throws InvalidIdException, MenuItemAlreadyExistsException {
         checkMenuItemDoesNotAlreadyExist(name);
         CoffeeShopMenuItem[] newMenuItems = new CoffeeShopMenuItem[CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() + 1];
         int count = 0;
@@ -29,7 +29,7 @@ public class CoffeeShopMenuItemService {
             }
         }
 
-        newMenuItems[count] = new CoffeeShopMenuItem(name, description, drinkVolume);
+        newMenuItems[count] = new CoffeeShopMenuItem(name, description, drinkVolume, price);
 
         CoffeeShopMenuController.getCurrentCoffeeShop().setMenuItemsNumber( CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() + 1 );
 
@@ -55,10 +55,10 @@ public class CoffeeShopMenuItemService {
         CoffeeShopService.modifyCoffeeShop(CoffeeShopMenuController.getCurrentCoffeeShop());
     }
 
-    public static void modifyMenuItem(String oldName, String name, String description, String drinkVolume) throws MenuItemAlreadyExistsException {
+    public static void modifyMenuItem(String oldName, String name, String description, String drinkVolume, int price) throws MenuItemAlreadyExistsException {
         if(!oldName.equals(name)) {
             removeMenuItem(oldName, description, drinkVolume);
-            addMenuItem(name, description, drinkVolume);
+            addMenuItem(name, description, drinkVolume, price);
         }
         else {
             CoffeeShopMenuItem[] newMenuItems = new CoffeeShopMenuItem[CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber()];
@@ -80,10 +80,12 @@ public class CoffeeShopMenuItemService {
     }
 
     private static void checkMenuItemDoesNotAlreadyExist(String name) throws MenuItemAlreadyExistsException {
-        for (CoffeeShopMenuItem item : CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItems()) {
-            if(item != null) {
-                if (Objects.equals(name, item.getName()))
-                    throw new MenuItemAlreadyExistsException(name);
+        if(CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber() > 0) {
+            for (CoffeeShopMenuItem item : CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItems()) {
+                if(item != null) {
+                    if (Objects.equals(name, item.getName()))
+                        throw new MenuItemAlreadyExistsException(name);
+                }
             }
         }
     }

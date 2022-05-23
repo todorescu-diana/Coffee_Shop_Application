@@ -2,8 +2,12 @@ package org.loose.fis.sre.services;
 
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.loose.fis.sre.controllers.CoffeeShopMenuController;
 import org.loose.fis.sre.exceptions.InvalidCredentialsException;
+import org.loose.fis.sre.exceptions.MenuItemAlreadyExistsException;
 import org.loose.fis.sre.exceptions.UsernameAlreadyExistsException;
+import org.loose.fis.sre.model.CoffeeShopMenuItem;
+import org.loose.fis.sre.model.Order;
 import org.loose.fis.sre.model.User;
 
 import java.nio.charset.StandardCharsets;
@@ -32,6 +36,10 @@ public class UserService {
     public static void addUser(String username, String password, String role) throws UsernameAlreadyExistsException {
         checkUserDoesNotAlreadyExist(username);
         userRepository.insert(new User(username, encodePassword(username, password), role));
+    }
+
+    public static void modifyUser(User user) {
+        userRepository.update(user);
     }
 
     private static void checkUserDoesNotAlreadyExist(String username) throws UsernameAlreadyExistsException {

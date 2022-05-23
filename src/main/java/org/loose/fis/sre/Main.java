@@ -6,10 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.loose.fis.sre.model.CoffeeShopMenuItem;
-import org.loose.fis.sre.services.CoffeeShopMenuItemService;
-import org.loose.fis.sre.services.CoffeeShopService;
-import org.loose.fis.sre.services.FileSystemService;
-import org.loose.fis.sre.services.UserService;
+import org.loose.fis.sre.services.*;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,6 +19,7 @@ public class Main extends Application {
         initDirectory();
         UserService.initDatabase();
         CoffeeShopService.initDatabase();
+        CardService.initDatabase();
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("login.fxml")));
         primaryStage.setTitle("Coffee Shop Application - Login");
         primaryStage.setScene(new Scene(root));

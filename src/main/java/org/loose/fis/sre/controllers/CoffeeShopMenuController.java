@@ -29,20 +29,20 @@ public class CoffeeShopMenuController {
         ObjectRepository<CoffeeShop> coffeeShopsRepository = getCoffeeShopsRepository();
 
         for(CoffeeShop shop : coffeeShopsRepository.find()) {
-            if(Objects.equals(shop.getOwner(), (String)getCurrentUser())) {
+            if(Objects.equals(shop.getOwner(), getCurrentUser().getUsername())) {
                currentCoffeeShop = shop;
             }
         }
         if(currentCoffeeShop.getMenuItemsNumber() > 0) {
             for(CoffeeShopMenuItem item : currentCoffeeShop.getMenuItems()) {
-                createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume());
+                createNewItemContainer(item.getName(), item.getDescription(), item.getDrinkVolume(), item.getPrice());
             }
         }
     }
 
     public static CoffeeShop getCurrentCoffeeShop() {return currentCoffeeShop;}
 
-    public void createNewItemContainer(String name, String description, String drinkVolume) {
+    public void createNewItemContainer(String name, String description, String drinkVolume, int price) {
         HBox newHBox = new HBox();
         AnchorPane newPanelContent = new AnchorPane();
 
@@ -52,10 +52,11 @@ public class CoffeeShopMenuController {
         Text nameField = new Text(name);
         Text descriptionField = new Text(description);
         Text drinkVolumeField = new Text(drinkVolume);
+        Text priceField = new Text(String.valueOf(price));
 
-        newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"));
+        newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), new Text("Price:"));
         newVBoxInfo.setLayoutX(104.0);
-        newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField);
+        newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
         newPanelContent.getChildren().addAll(newVBoxTitles, newVBoxInfo);
         TitledPane newTitledPane = new TitledPane(name, newPanelContent);
@@ -66,7 +67,7 @@ public class CoffeeShopMenuController {
 
         Button newEditButton = new Button("Edit");
         newEditButton.setOnAction((event) -> {
-            createNewEditableItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText());
+            createNewEditableItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Integer.parseInt(priceField.getText()));
             verticalBoxContainer.getChildren().remove(newHBox);
         });
         Button newDeleteButton = new Button("Delete");
@@ -89,9 +90,11 @@ public class CoffeeShopMenuController {
         TextField nameField = new TextField();
         TextField descriptionField = new TextField();
         TextField drinkVolumeField = new TextField();
+        TextField priceField = new TextField();
         nameField.setId("nameField");
-        nameField.setId("descriptionField");
-        nameField.setId("drinkVolumeField");
+        descriptionField.setId("descriptionField");
+        drinkVolumeField.setId("drinkVolumeField");
+        priceField.setId("priceField");
 
         Text itemMessage = new Text("");
         itemMessage.setId("itemMessage");
@@ -99,19 +102,28 @@ public class CoffeeShopMenuController {
         Button addNewItemButton = new Button("Add New Item");
         addNewItemButton.setOnAction((event) -> {
             try {
-                CoffeeShopMenuItemService.addMenuItem(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText());
-                createNewItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText());
+                try{
+                    Integer.parseInt(priceField.getText());
+                }
+                catch(NumberFormatException ex) {
+                    itemMessage.setText("Price has to be a number.");
+                }
+                CoffeeShopMenuItemService.addMenuItem(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Integer.parseInt(priceField.getText()));
+                createNewItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Integer.parseInt(priceField.getText()));
                 verticalBoxContainer.getChildren().remove(newHBox);
             } catch(InvalidIdException e) {
                 itemMessage.setText("Menu item name cannot be empty.");
             } catch (MenuItemAlreadyExistsException e) {
                 itemMessage.setText(e.getMessage());
+            } catch(NumberFormatException ex) {
+                itemMessage.setText("Price has to be a number.");
             }
+
         });
 
-        newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), addNewItemButton, itemMessage);
+        newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), new Text("Price:"), addNewItemButton, itemMessage);
         newVBoxInfo.setLayoutX(104.0);
-        newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField);
+        newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
         newPanelContent.getChildren().addAll(newVBoxTitles, newVBoxInfo);
         TitledPane newTitledPane = new TitledPane("New Item", newPanelContent);
@@ -131,7 +143,8 @@ public class CoffeeShopMenuController {
         verticalBoxContainer.getChildren().add(newHBox);
     }
 
-    public void createNewEditableItemContainer(String nameFieldDefaultValue, String descriptionFieldDefaultValue, String drinkVolumeFieldDefaultValue) {
+    public void createNewEditableItemContainer(String nameFieldDefaultValue, String descriptionFieldDefaultValue, String drinkVolumeFieldDefaultValue, int priceFieldDefaultValue) {
+
         HBox newHBox = new HBox();
         AnchorPane newPanelContent = new AnchorPane();
 
@@ -141,12 +154,15 @@ public class CoffeeShopMenuController {
         TextField nameField = new TextField();
         TextField descriptionField = new TextField();
         TextField drinkVolumeField = new TextField();
+        TextField priceField = new TextField();
         nameField.setId("nameField");
-        nameField.setId("descriptionField");
-        nameField.setId("drinkVolumeField");
+        descriptionField.setId("descriptionField");
+        drinkVolumeField.setId("drinkVolumeField");
+        priceField.setId("priceField");
         nameField.setText(nameFieldDefaultValue);
         descriptionField.setText(descriptionFieldDefaultValue);
         drinkVolumeField.setText(drinkVolumeFieldDefaultValue);
+        priceField.setText(String.valueOf(priceFieldDefaultValue));
 
         Text itemMessage = new Text("");
         itemMessage.setId("itemMessage");
@@ -154,8 +170,14 @@ public class CoffeeShopMenuController {
         Button addNewItemButton = new Button("Add New Item");
         addNewItemButton.setOnAction((event) -> {
             try {
-                CoffeeShopMenuItemService.modifyMenuItem(nameFieldDefaultValue, nameField.getText(), descriptionField.getText(), drinkVolumeField.getText());
-                createNewItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText());
+                try{
+                    Integer.parseInt(priceField.getText());
+                }
+                catch(NumberFormatException ex) {
+                    itemMessage.setText("Price has to be a number.");
+                }
+                CoffeeShopMenuItemService.modifyMenuItem(nameFieldDefaultValue, nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Integer.parseInt(priceField.getText()));
+                createNewItemContainer(nameField.getText(), descriptionField.getText(), drinkVolumeField.getText(), Integer.parseInt(priceField.getText()));
                 verticalBoxContainer.getChildren().remove(newHBox);
             } catch(InvalidIdException e) {
                 itemMessage.setText("Menu item name cannot be empty.");
@@ -164,9 +186,9 @@ public class CoffeeShopMenuController {
             }
         });
 
-        newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), addNewItemButton, itemMessage);
+        newVBoxTitles.getChildren().addAll(new Text("Name:"), new Text("Description:"), new Text("Drink volume:"), new Text("Price:"), addNewItemButton, itemMessage);
         newVBoxInfo.setLayoutX(104.0);
-        newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField);
+        newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
         newPanelContent.getChildren().addAll(newVBoxTitles, newVBoxInfo);
         TitledPane newTitledPane = new TitledPane("New Item", newPanelContent);

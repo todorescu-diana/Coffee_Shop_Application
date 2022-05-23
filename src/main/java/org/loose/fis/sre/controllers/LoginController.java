@@ -28,9 +28,14 @@ public class LoginController {
     @FXML
     private TextField usernameField;
 
+    private static String currentUser;
+
     @FXML
     public void initialize() {
 
+    }
+    public static String getCurrentUser() {
+        return currentUser;
     }
 
     @FXML
@@ -40,6 +45,8 @@ public class LoginController {
 
             Stage currentStage = (Stage) usernameField.getScene().getWindow();
             String username = usernameField.getText();
+
+            currentUser = username;
 
             currentStage.close();
 

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopMenuClientController">
+<ScrollPane prefHeight="400.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopMenuClientController">
     <content>
         <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffcc;">
             <children>
@@ -20,7 +20,7 @@
                     <children>
                     </children>
                 </VBox>
-            <HBox fx:id="hContainer" layoutX="444.0" layoutY="21.0" prefHeight="100.0" prefWidth="200.0">
+            <HBox fx:id="hContainer" layoutX="454.0" layoutY="21.0" prefHeight="100.0" prefWidth="200.0">
                <children>
                   <Button id="goToCheckoutButton" fx:id="goToCheckoutButton" mnemonicParsing="false" onAction="#onCheckoutPress" style="-fx-background-color: #800000;" text="Go to Checkout" textFill="#ffffcc" />
                </children></HBox>

@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.dizitart.no2.objects.ObjectRepository;
@@ -45,18 +46,30 @@ public class CheckoutController {
     private User currentManager;
     private Card currentCard;
 
+    private static boolean isCardFieldVisible = false;
+
     public void initialize() {
         payWith.getItems().addAll("Cash", "Card");
 
+        alertMessage.setFill(Color.MAROON);
+        hBox.setSpacing(9);
+
+        Text itemMessage = new Text("Card number:");
+        itemMessage.setFill(Color.web("#800000"));
+        TextField cardNumberField = new TextField();
+        cardNumberField.setId("cardNumberField");
+
         payWith.setOnAction((event) -> {
-            if (Objects.equals(payWith.getValue(), "Card")) {
-                Text itemMessage = new Text("Card number:");
-                TextField cardNumberField = new TextField();
-                cardNumberField.setId("cardNumberField");
+            if (Objects.equals(payWith.getValue(), "Card") && !isCardFieldVisible) {
                 cardNumberField.textProperty().addListener((observable, oldValue, newValue) -> {
                     cardNumber = newValue;
                 });
                 hBox.getChildren().addAll(itemMessage, cardNumberField);
+                isCardFieldVisible = true;
+            }
+            else if(Objects.equals(payWith.getValue(), "Cash") && isCardFieldVisible) {
+                hBox.getChildren().removeAll(itemMessage, cardNumberField);
+                isCardFieldVisible = false;
             }
         });
     }

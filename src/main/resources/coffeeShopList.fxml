@@ -4,19 +4,23 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <ScrollPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopListController">
     <content>
-        <AnchorPane prefHeight="400.0" prefWidth="600.0">
+        <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffcc;">
             <children>
-                <Text layoutX="14.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coffee Shop List" />
+                <Text layoutX="39.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coffee Shop List">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font></Text>
                 <VBox fx:id="verticalBoxContainer" layoutX="14.0" layoutY="90.0">
                     <children>
                     </children>
                 </VBox>
-            <Button onAction="#handleGoToCoffeeShopListPress" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Coffee Shop List" />
-            <Button onAction="#handleGoToPastOrdersPress" layoutX="174.0" layoutY="14.0" mnemonicParsing="false" text="Past Orders" />
+                <Button layoutX="466.0" layoutY="22.0" mnemonicParsing="false" onAction="#handleGoToCoffeeShopListPress" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Coffee Shop List" />
+                <Button layoutX="489.0" layoutY="75.0" mnemonicParsing="false" onAction="#handleGoToPastOrdersPress" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Past Orders" />
             </children>
         </AnchorPane>
     </content>

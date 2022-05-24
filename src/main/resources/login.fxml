@@ -7,21 +7,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="575.0" style="-fx-background-color: #ffffcc;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.LoginController">
 
-    <Label layoutX="151.0" layoutY="133.0" text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Label layoutX="151.0" layoutY="133.0" style="-fx-text-fill: #800000;" text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-    <TextField fx:id="usernameField" layoutX="236.0" layoutY="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField id="usernameField" fx:id="usernameField" layoutX="236.0" layoutY="128.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-    <Label layoutX="153.0" layoutY="191.0" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <Label layoutX="153.0" layoutY="191.0" style="-fx-text-fill: #800000;" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
-    <PasswordField fx:id="passwordField" layoutX="236.0" layoutY="186.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <PasswordField id="passwordField" fx:id="passwordField" layoutX="236.0" layoutY="186.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-    <Text layoutX="282.0" layoutY="71.0" text="Login" wrappingWidth="38.00000476837158" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+    <Text layoutX="265.0" layoutY="73.0" text="Login" wrappingWidth="70.00000216066837" GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <font>
+         <Font name="System Bold" size="24.0" />
+      </font></Text>
     <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-    <Button layoutX="196.0" layoutY="318.0" onAction="#handleGoToSignUpAction" text="Don't have an account? Sign up" />
-    <Button layoutX="272.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleLoginAction" text="Login" />
-   <Text fx:id="loginMessage" layoutX="202.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="218.0" />
+    <Button id="goToSignUpButton" layoutX="198.0" layoutY="318.0" onAction="#handleGoToSignUpAction" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Don't have an account? Sign up" />
+    <Button id="loginButton" layoutX="272.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleLoginAction" style="-fx-background-color: #800000; -fx-text-fill: #ffffcc;" text="Login" />
+   <Text id="loginMessage" fx:id="loginMessage" fill="MAROON" layoutX="244.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="218.0" />
 </AnchorPane>

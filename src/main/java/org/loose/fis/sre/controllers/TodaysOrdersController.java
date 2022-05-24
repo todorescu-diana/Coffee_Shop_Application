@@ -10,10 +10,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.loose.fis.sre.model.CoffeeShopMenuItem;
 import org.loose.fis.sre.model.Order;
 import org.loose.fis.sre.services.CoffeeShopMenuItemService;
+
+import java.io.IOException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,8 +32,11 @@ public class TodaysOrdersController {
     private String[] distinctItems;
 
     public void initialize () {
+        verticalBoxContainer.setSpacing(30);
+        verticalBoxContainer.setStyle("-fx-padding: 10 0 20 3");
 
-       // System.out.println(getCurrentUser().getOrderNumber());
+        // System.out.println(getCurrentUser().getOrderNumber());
+      
         if(getCurrentUser().getOrderNumber() > 0 ) {
             for(Order order: getCurrentUser().getOrderList()) {
                 if(Objects.equals(order.getOrderDate(), new SimpleDateFormat("dd-MM-yyyy").format(new Date()))) createNewOrderContainer(order);
@@ -42,11 +49,14 @@ public class TodaysOrdersController {
         int distinctCount = 0;
         distinctItems = new String[order.getItemNumber()];
 
-        HBox newHBox = new HBox();
-        AnchorPane newPanelContent = new AnchorPane();
+        HBox newHBox = new HBox(50);
+        newHBox.setStyle("-fx-background-color: #800000; -fx-text-fill: #ffffcc; -fx-background-radius: 5px; -fx-padding: 10 10 10 10");
 
-        VBox newVBoxTitles = new VBox();
-        VBox newVBoxInfo = new VBox();
+        VBox newVBoxTitles = new VBox(10);
+        VBox newVBoxInfo = new VBox(10);
+
+        HBox container = new HBox();
+
 
         VBox itemsVBox = new VBox();
         //System.out.println("order items number: " + order.getItemNumber());
@@ -67,6 +77,8 @@ public class TodaysOrdersController {
                 }
 
                 Text itemText = new Text(item.getName() + " x " + String.valueOf(itemCount));
+                itemText.setFill(Color.web("#ffffcc"));
+
 
                 itemsVBox.getChildren().add(itemText);
                 distinctItems[distinctCount++] = item.getName();
@@ -74,20 +86,32 @@ public class TodaysOrdersController {
         }
 
         Text priceField = new Text(String.valueOf(order.getOrderPrice()));
+        priceField.setFill(Color.web("#ffffcc"));
 
-        newVBoxTitles.getChildren().addAll(new Text("Items ordered:"), new Text("Order price:"));
+
+        Text itemText = new Text("Items ordered:");
+        itemText.setFill(Color.web("#ffffcc"));
+        Text orderPriceText = new Text("Order price:");
+        orderPriceText.setFill(Color.web("#ffffcc"));
+        newVBoxTitles.getChildren().addAll(itemText, orderPriceText);
         newVBoxInfo.setLayoutX(104.0);
         newVBoxInfo.getChildren().addAll(itemsVBox, priceField);
 
-        newPanelContent.getChildren().addAll(newVBoxTitles, newVBoxInfo);
-        TitledPane newTitledPane = new TitledPane(order.getCoffeeShopName(), newPanelContent);
-        newTitledPane.setPrefWidth(241);
-        newTitledPane.setPrefHeight(200);
-        newTitledPane.expandedProperty().addListener((observable, wasExpanded, isExpanded) ->
-                newTitledPane.setMinHeight(isExpanded ? 200 : Region.USE_PREF_SIZE));
+        newHBox.getChildren().addAll(newVBoxTitles, newVBoxInfo);
+        container.getChildren().addAll(newHBox);
 
-        newHBox.getChildren().addAll(newTitledPane);
+        verticalBoxContainer.getChildren().add(container);
+    }
 
-        verticalBoxContainer.getChildren().add(newHBox);
+    @FXML
+    private void onBackPress (javafx.event.ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();
+        currentStage.close();
+        Parent checkout = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coffeeShopMenu.fxml")));
+
+        Scene newScene = new Scene(checkout);
+        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        newStage.setScene(newScene);
+        newStage.show();
     }
 }

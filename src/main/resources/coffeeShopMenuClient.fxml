@@ -3,23 +3,24 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopMenuClientController">
+<ScrollPane prefHeight="400.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.loose.fis.sre.controllers.CoffeeShopMenuClientController">
     <content>
-        <AnchorPane prefHeight="400.0" prefWidth="600.0">
+        <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffcc;">
             <children>
-                <Text layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coffee Shop Menu" />
+                <Text layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coffee Shop Menu">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font></Text>
                 <VBox fx:id="verticalBoxContainer" layoutX="14.0" layoutY="65.0">
                     <children>
                     </children>
                 </VBox>
-            <HBox fx:id="hContainer" layoutX="414.0" layoutY="31.0" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="goToCheckoutButton" onAction="#onCheckoutPress" mnemonicParsing="false" text="Go to Checkout" />
-               </children></HBox>
+            <Button id="goToCheckoutButton" fx:id="goToCheckoutButton" layoutX="448.0" layoutY="22.0" mnemonicParsing="false" onAction="#onCheckoutPress" style="-fx-background-color: #800000;" text="Go to Checkout" textFill="#ffffcc" />
+            <Button id="backToCoffeeShopsListButton" fx:id="backToCoffeeShopsListButton" layoutX="399.0" layoutY="76.0" mnemonicParsing="false" onAction="#onBackPress" style="-fx-background-color: #800000;" text="Back to Coffee Shops List" textFill="#ffffcc" />
             </children>
         </AnchorPane>
     </content>

@@ -105,9 +105,6 @@ public class CheckoutController {
             modifyUser(getCurrentUser());
             modifyUser(currentManager);
 
-        modifyUser(getCurrentUser());
-        modifyUser(currentManager);
-
 //        for(Order o : getCurrentUser().getOrderList()) {
 //            for(CoffeeShopMenuItem item : o.getItems()) {
 //                System.out.println(item.getName());

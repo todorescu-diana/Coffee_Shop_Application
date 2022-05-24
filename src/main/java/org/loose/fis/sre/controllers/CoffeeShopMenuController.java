@@ -126,7 +126,7 @@ public class CoffeeShopMenuController {
         priceField.setId("editablePriceField");
 
         Text itemMessage = new Text("");
-        itemMessage.setFill(Color.MAROON);
+        itemMessage.setFill(Color.web("#ffffcc"));
         itemMessage.setId("itemMessage");
 
         HBox container = new HBox(5);
@@ -168,7 +168,7 @@ public class CoffeeShopMenuController {
         Text priceText = new Text("Price:");
         priceText.setFill(Color.web("#ffffcc"));
 
-        newVBoxTitles.getChildren().addAll(nameText, descriptionText, drinkVolumeText, priceText,  addNewItemButton);
+        newVBoxTitles.getChildren().addAll(nameText, descriptionText, drinkVolumeText, priceText,  addNewItemButton, itemMessage);
         newVBoxInfo.getChildren().addAll(nameField, descriptionField, drinkVolumeField, priceField);
 
         newHBox.getChildren().addAll(newVBoxTitles, newVBoxInfo);
@@ -207,7 +207,7 @@ public class CoffeeShopMenuController {
         priceField.setText(String.valueOf(priceFieldDefaultValue));
 
         Text itemMessage = new Text("");
-        itemMessage.setFill(Color.MAROON);
+        itemMessage.setFill(Color.web("#ffffcc"));
         itemMessage.setId("itemMessage");
 
         HBox container = new HBox(5);

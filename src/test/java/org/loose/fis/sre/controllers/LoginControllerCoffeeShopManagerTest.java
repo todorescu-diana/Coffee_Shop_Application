@@ -23,10 +23,10 @@ import static org.testfx.assertions.api.Assertions.assertThat;
 
 @ExtendWith(ApplicationExtension.class)
 public class LoginControllerCoffeeShopManagerTest {
-    public static final String USERNAMETHATALREADYEXISTS = "managerThatAlreadyExists";
+    public static final String USERNAMETHATALREADYEXISTS = "manager1234";
     public static final String PASSWORD = "password";
     public static final String WRONGPASSWORD = "wrongpassword";
-    public static final String ROLEMANAGER = "Client";
+    public static final String ROLEMANAGER = "Coffee Shop Manager";
 
     @BeforeEach
     void setUp() throws Exception {
@@ -67,6 +67,6 @@ public class LoginControllerCoffeeShopManagerTest {
 
         robot.clickOn("#loginButton");
 
-        assertThat(robot.lookup("#coffeeShopMenuManagerText").queryText()).hasText("Menu");
+        assertThat(robot.lookup("#coffeeShopMenuManagerText").queryText()).hasText("My Coffee Shop's Menu");
     }
 }

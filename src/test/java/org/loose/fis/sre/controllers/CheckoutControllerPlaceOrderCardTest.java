@@ -91,7 +91,7 @@ public class CheckoutControllerPlaceOrderCardTest {
     @Test
     void testClientPlaceOrderCash(FxRobot robot) {
         Assertions.assertThat(UserService.getAllUsers()).size().isEqualTo(2);
-        Assertions.assertThat(CardService.getAllCards()).size().isEqualTo(6);
+        Assertions.assertThat(CardService.getAllCards()).size().isEqualTo(2);
         robot.clickOn("#usernameField");
         robot.write(USERNAME);
         robot.clickOn("#passwordField");

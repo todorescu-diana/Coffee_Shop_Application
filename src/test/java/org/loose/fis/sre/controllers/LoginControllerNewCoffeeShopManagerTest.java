@@ -78,6 +78,6 @@ public class LoginControllerNewCoffeeShopManagerTest {
 
         robot.clickOn("#loginButton");
 
-        assertThat(robot.lookup("#coffeeShopMenuManagerText").queryText()).hasText("Menu");
+        assertThat(robot.lookup("#coffeeShopMenuManagerText").queryText()).hasText("My Coffee Shop's Menu");
     }
 }

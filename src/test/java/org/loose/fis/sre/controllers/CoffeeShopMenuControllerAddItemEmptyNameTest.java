@@ -62,7 +62,7 @@ public class CoffeeShopMenuControllerAddItemEmptyNameTest {
 
         robot.clickOn("#loginButton");
 
-        assertThat(robot.lookup("#coffeeShopMenuManagerText").queryText()).hasText("Menu");
+        assertThat(robot.lookup("#coffeeShopMenuManagerText").queryText()).hasText("My Coffee Shop's Menu");
 
         Assertions.assertThat(CoffeeShopMenuController.getCurrentCoffeeShop().getName()).isEqualTo(COFFEESHOPNAME);
         Assertions.assertThat(CoffeeShopMenuController.getCurrentCoffeeShop().getMenuItemsNumber()).isEqualTo(0);

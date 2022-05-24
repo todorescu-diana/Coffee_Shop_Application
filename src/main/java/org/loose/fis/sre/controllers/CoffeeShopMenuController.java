@@ -262,27 +262,7 @@ public class CoffeeShopMenuController {
         verticalBoxContainer.getChildren().add(container);
     }
 
-    public void handleGoToCoffeeShopMenu(javafx.event.ActionEvent event) throws IOException {
-        Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();
-        currentStage.close();
 
-        Parent coffeeShopList = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("coffeeShopMenu.fxml")));
-        Scene newScene = new Scene(coffeeShopList);
-        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        newStage.setScene(newScene);
-        newStage.show();
-    }
-
-    public void handleGoToTodaysOrders(javafx.event.ActionEvent event) throws IOException {
-        Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();
-        currentStage.close();
-
-        Parent coffeeShopList = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("todaysOrders.fxml")));
-        Scene newScene = new Scene(coffeeShopList);
-        Stage newStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        newStage.setScene(newScene);
-        newStage.show();
-    }
 
     public void handleGoToCoffeeShopMenu(javafx.event.ActionEvent event) throws IOException {
         Stage currentStage = (Stage) verticalBoxContainer.getScene().getWindow();

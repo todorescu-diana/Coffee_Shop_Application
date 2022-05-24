@@ -10,7 +10,6 @@ public class Order {
     private String coffeeShopName;
 
     private double price;
-
     public Order(CoffeeShopMenuItem[] items, String orderDate, String coffeeShopName) {
         this.items = items;
         this.orderDate = orderDate;

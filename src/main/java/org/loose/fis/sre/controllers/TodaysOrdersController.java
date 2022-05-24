@@ -18,6 +18,7 @@ import org.loose.fis.sre.model.Order;
 import org.loose.fis.sre.services.CoffeeShopMenuItemService;
 
 import java.io.IOException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -31,11 +32,11 @@ public class TodaysOrdersController {
     private String[] distinctItems;
 
     public void initialize () {
-
         verticalBoxContainer.setSpacing(30);
         verticalBoxContainer.setStyle("-fx-padding: 10 0 20 3");
 
         // System.out.println(getCurrentUser().getOrderNumber());
+      
         if(getCurrentUser().getOrderNumber() > 0 ) {
             for(Order order: getCurrentUser().getOrderList()) {
                 if(Objects.equals(order.getOrderDate(), new SimpleDateFormat("dd-MM-yyyy").format(new Date()))) createNewOrderContainer(order);
@@ -55,6 +56,7 @@ public class TodaysOrdersController {
         VBox newVBoxInfo = new VBox(10);
 
         HBox container = new HBox();
+
 
         VBox itemsVBox = new VBox();
         //System.out.println("order items number: " + order.getItemNumber());
@@ -76,6 +78,7 @@ public class TodaysOrdersController {
 
                 Text itemText = new Text(item.getName() + " x " + String.valueOf(itemCount));
                 itemText.setFill(Color.web("#ffffcc"));
+
 
                 itemsVBox.getChildren().add(itemText);
                 distinctItems[distinctCount++] = item.getName();

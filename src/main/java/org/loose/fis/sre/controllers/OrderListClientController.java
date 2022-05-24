@@ -30,10 +30,12 @@ public class OrderListClientController {
 
     public void initialize () {
 
+
         verticalBoxContainer.setSpacing(30);
         verticalBoxContainer.setStyle("-fx-padding: 20 0 30 9");
 
 //        System.out.println(getCurrentUser().getOrderNumber());
+
         if(getCurrentUser().getOrderNumber() > 0 ) {
             for(Order order: getCurrentUser().getOrderList()) {
                 createNewOrderContainer(order);

@@ -1,6 +1,9 @@
 package org.loose.fis.sre.model;
 
+import org.dizitart.no2.objects.Id;
+
 public class Card {
+    @Id
     private String cardNumber;
     private double balance = 0;
     public Card(String cardNumber, double balance) {

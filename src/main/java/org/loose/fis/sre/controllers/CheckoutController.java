@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import org.dizitart.no2.objects.ObjectRepository;
 import org.loose.fis.sre.model.Card;
 import org.loose.fis.sre.model.User;
+import org.loose.fis.sre.services.CardService;
 
 import java.awt.*;
 import java.io.IOException;
@@ -138,6 +139,7 @@ public class CheckoutController {
 //                        System.out.println("OLD BALANCE: " + currentCard.getBalance());
 //                        System.out.println("ORDER PRICE: " + CoffeeShopMenuClientController.getCurrentOrder().getOrderPrice());
                         currentCard.setBalance(oldBalance - CoffeeShopMenuClientController.getCurrentOrder().getOrderPrice());
+                        CardService.modifyCard(currentCard);
 //                System.out.println("NEW BALANCE: " + currentCard.getBalance());
                         Stage currentStage = (Stage) placeOrderButton.getScene().getWindow();
                         currentStage.close();
